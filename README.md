@@ -6,8 +6,8 @@
   <p>让复杂的多步骤任务自动化变得简单可靠</p>
 
   <p>
-    <a href="https://github.com/openmatrix/openmatrix/actions">
-      <img src="https://github.com/openmatrix/openmatrix/workflows/CI/badge.svg" alt="CI Status">
+    <a href="https://matrix.laofu.online/">
+      <img src="https://img.shields.io/badge/官网-matrix.laofu.online-brightgreen" alt="Website">
     </a>
     <a href="https://www.npmjs.com/package/openmatrix">
       <img src="https://img.shields.io/npm/v/openmatrix.svg" alt="npm version">
@@ -15,9 +15,15 @@
     <a href="https://opensource.org/licenses/MIT">
       <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License">
     </a>
-    <a href="https://discord.gg/openmatrix">
-      <img src="https://img.shields.io/discord/123456789.svg?label=Discord" alt="Discord">
+    <a href="https://github.com/bigfish1913/openmatrix">
+      <img src="https://img.shields.io/github/stars/bigfish1913/openmatrix?style=social" alt="GitHub Stars">
     </a>
+  </p>
+
+  <p>
+    <a href="https://matrix.laofu.online/">官网</a> •
+    <a href="https://matrix.laofu.online/docs/">文档</a> •
+    <a href="https://github.com/bigfish1913/openmatrix">GitHub</a>
   </p>
 </div>
 
