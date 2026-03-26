@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速开始 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../docs.css">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../" class="logo">
+        <img src="../../logo-horizontal.svg" alt="OpenMatrix" height="32">
+      </a>
+      <div class="nav-links">
+        <a href="../../#features">功能</a>
+        <a href="../../#how-it-works">工作原理</a>
+        <a href="../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <!-- Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>开始使用</h4>
+        <ul>
+          <li><a href="../">介绍</a></li>
+          <li><a href="./" class="active">快速开始</a></li>
+          <li><a href="../installation">安装</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h4>核心概念</h4>
+        <ul>
+          <li><a href="../concepts/phases">Phase 与 Task</a></li>
+          <li><a href="../concepts/quality-levels">质量级别</a></li>
+          <li><a href="../concepts/meetings">Meeting 机制</a></li>
+          <li><a href="../concepts/skills">Skills</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h4>API 参考</h4>
+        <ul>
+          <li><a href="../cli">CLI 命令</a></li>
+          <li><a href="../config">配置</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+      <article>
+        <h1>快速开始</h1>
+        <p class="lead">
+          OpenMatrix 是一个 AI 原生的任务编排框架，让复杂的多步骤任务自动化变得简单可靠。
+          本指南将帮助你在 5 分钟内上手。
+        </p>
+
+        <h2 id="installation">安装</h2>
+        <p>OpenMatrix 需要 Node.js 18+ 环境。你可以通过 npm 全局安装：</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code># 使用 npm 全局安装
+npm install -g openmatrix
+
+# 或者使用 yarn
+yarn global add openmatrix
+
+# 或者使用 pnpm
+pnpm add -g openmatrix</code></pre>
+        </div>
+
+        <h3>验证安装</h3>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code># 检查 CLI 是否可用
+openmatrix --version
+
+# 检查 Skills 是否安装成功
+openmatrix install-skills
+
+# 查看已安装的 Skills
+ls ~/.claude/commands/om/</code></pre>
+        </div>
+
+        <h2 id="first-task">第一个任务</h2>
+        <p>在你的项目目录中运行以下命令：</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code>/om:start 实现用户登录功能</code></pre>
+        </div>
+        <p>OpenMatrix 会自动：</p>
+        <ol>
+          <li>分析任务需求</li>
+          <li>拆解为多个 Phase 和 Task</li>
+          <li>询问质量级别 (strict/balanced/fast)</li>
+          <li>开始执行任务</li>
+        </ol>
+
+        <h3>质量级别选择</h3>
+        <p>第一个问题会让你选择质量级别：</p>
+        <div class="code-block">
+          <pre><code>┌─────────────────────────────────────────────────────────┐
+│ 问题 0: 选择质量级别                                     │
+├─────────────────────────────────────────────────────────┤
+│ 🚀 strict   → TDD + 80%覆盖率 + AI验收 (推荐生产代码)    │
+│ ⚖️ balanced  → 60%覆盖率 + AI验收 (日常开发)            │
+│ ⚡ fast      → 无质量门禁 (快速原型)                     │
+└─────────────────────────────────────────────────────────┘</code></pre>
+        </div>
+
+        <h2 id="quality-levels">质量级别详解</h2>
+        <div class="quality-table">
+          <table>
+            <thead>
+              <tr>
+                <th>级别</th>
+                <th>TDD</th>
+                <th>覆盖率</th>
+                <th>Lint</th>
+                <th>安全扫描</th>
+                <th>AI验收</th>
+                <th>适用场景</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="quality-badge strict">strict</span></td>
+                <td>✅</td>
+                <td>>80%</td>
+                <td>✅ 严格</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>🏭 生产代码</td>
+              </tr>
+              <tr>
+                <td><span class="quality-badge balanced">balanced</span></td>
+                <td>❌</td>
+                <td>>60%</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>📦 日常开发</td>
+              </tr>
+              <tr>
+                <td><span class="quality-badge fast">fast</span></td>
+                <td>❌</td>
+                <td>>20%</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>❌</td>
+                <td>🏃 快速原型</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="skills">Skills 命令</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>命令</th>
+              <th>用途</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>/om:start</code></td>
+              <td>启动新任务 (第一个问题选质量级别)</td>
+            </tr>
+            <tr>
+              <td><code>/om:auto</code></td>
+              <td>🚀 全自动执行 - 无阻塞、无确认、直接完成</td>
+            </tr>
+            <tr>
+              <td><code>/om:status</code></td>
+              <td>查看当前状态</td>
+            </tr>
+            <tr>
+              <td><code>/om:approve</code></td>
+              <td>审批决策</td>
+            </tr>
+            <tr>
+              <td><code>/om:meeting</code></td>
+              <td>处理阻塞问题</td>
+            </tr>
+            <tr>
+              <td><code>/om:resume</code></td>
+              <td>恢复中断</td>
+            </tr>
+            <tr>
+              <td><code>/om:retry</code></td>
+              <td>重试失败</td>
+            </tr>
+            <tr>
+              <td><code>/om:report</code></td>
+              <td>生成报告</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 id="next-steps">下一步</h2>
+        <ul>
+          <li><a href="../concepts/phases">了解 Phase 与 Task 的概念</a></li>
+          <li><a href="../concepts/quality-levels">深入了解质量级别</a></li>
+          <li><a href="../cli">查看所有 CLI 命令</a></li>
+          <li><a href="https://github.com/bigfish1913/openmatrix" target="_blank">查看 GitHub 仓库</a></li>
+        </ul>
+
+        <div class="callout">
+          <h4>💡 提示</h4>
+          <p>如果遇到问题，可以查看 <a href="https://github.com/bigfish1913/openmatrix/issues" target="_blank">GitHub Issues</a> 或加入社区讨论。</p>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <script src="../../main.js"></script>
+</body>
+</html>
