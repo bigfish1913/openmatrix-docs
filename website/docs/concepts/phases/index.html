@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phase 与 Task - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../../" class="logo"><img src="../../../logo-horizontal.svg" alt="OpenMatrix" height="32"></a>
+      <div class="nav-links">
+        <a href="../../../#features">功能</a>
+        <a href="../../../#comparison">对比</a>
+        <a href="../../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>核心概念</h4>
+        <ul>
+          <li><a href="./" class="active">Phase 与 Task</a></li>
+          <li><a href="../quality-levels/">质量级别</a></li>
+          <li><a href="../meetings/">Meeting 机制</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="docs-content">
+      <article>
+        <h1>Phase 与 Task</h1>
+        <h2>层级结构</h2>
+        <div class="code-block">
+          <pre><code>Phase 1: 设计阶段
+  └─ TASK-001: 架构设计
+
+Phase 2: 开发阶段
+  ├─ TASK-002: 数据模型
+  ├─ TASK-003: API 接口
+  └─ TASK-004: 前端页面
+
+Phase 3: 测试阶段
+  ├─ TASK-005: 单元测试
+  └─ TASK-006: 集成测试</code></pre>
+        </div>
+        <h2>执行流程</h2>
+        <p><strong>strict 模式:</strong> Plan → TDD → Develop → Verify → Accept</p>
+        <p><strong>balanced 模式:</strong> Plan → Develop → Verify → Accept</p>
+      </article>
+    </main>
+  </div>
+  <script src="../../../main.js"></script>
+</body>
+</html>

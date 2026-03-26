@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../../" class="logo"><img src="../../../logo-horizontal.svg" alt="OpenMatrix" height="32"></a>
+      <div class="nav-links">
+        <a href="../../../#features">功能</a>
+        <a href="../../../#comparison">对比</a>
+        <a href="../../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>核心概念</h4>
+        <ul>
+          <li><a href="../phases/">Phase 与 Task</a></li>
+          <li><a href="../quality-levels/">质量级别</a></li>
+          <li><a href="../meetings/">Meeting 机制</a></li>
+          <li><a href="./" class="active">Skills</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="docs-content">
+      <article>
+        <h1>Skills 命令</h1>
+        <p class="lead">OpenMatrix 通过 Claude Code Skills 提供任务编排能力。</p>
+        <table>
+          <thead><tr><th>命令</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>/om:start</code></td><td>启动新任务 (第一个问题选质量级别)</td></tr>
+            <tr><td><code>/om:auto</code></td><td>全自动执行 - 无阻塞、无确认</td></tr>
+            <tr><td><code>/om:status</code></td><td>查看当前状态</td></tr>
+            <tr><td><code>/om:approve</code></td><td>审批决策</td></tr>
+            <tr><td><code>/om:meeting</code></td><td>处理阻塞问题</td></tr>
+            <tr><td><code>/om:resume</code></td><td>恢复中断</td></tr>
+            <tr><td><code>/om:retry</code></td><td>重试失败</td></tr>
+            <tr><td><code>/om:report</code></td><td>生成报告</td></tr>
+          </tbody>
+        </table>
+        <h2>安装</h2>
+        <div class="code-block">
+          <pre><code>npm install -g openmatrix
+openmatrix install-skills
+ls ~/.claude/commands/om/</code></pre>
+        </div>
+      </article>
+    </main>
+  </div>
+  <script src="../../../main.js"></script>
+</body>
+</html>

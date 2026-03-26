@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速开始 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../" class="logo"><img src="../../logo-horizontal.svg" alt="OpenMatrix" height="32"></a>
+      <div class="nav-links">
+        <a href="../../#features">功能</a>
+        <a href="../../#comparison">对比</a>
+        <a href="../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>开始使用</h4>
+        <ul>
+          <li><a href="../">介绍</a></li>
+          <li><a href="../getting-started/">快速开始</a></li>
+          <li><a href="./" class="active">快速入门</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="docs-content">
+      <article>
+        <h1>快速入门</h1>
+        <div class="code-block">
+          <pre><code># 安装
+npm install -g openmatrix
+
+# 验证
+openmatrix --version
+openmatrix install-skills</code></pre>
+        </div>
+        <h2>选择质量级别</h2>
+        <table>
+          <thead><tr><th>级别</th><th>覆盖率</th><th>适用场景</th></tr></thead>
+          <tbody>
+            <tr><td><code>strict</code></td><td>&gt;80%</td><td>生产代码</td></tr>
+            <tr><td><code>balanced</code></td><td>&gt;60%</td><td>日常开发</td></tr>
+            <tr><td><code>fast</code></td><td>&gt;20%</td><td>快速原型</td></tr>
+          </tbody>
+        </table>
+        <p><a href="../getting-started/">查看完整快速开始指南 →</a></p>
+      </article>
+    </main>
+  </div>
+  <script src="../../main.js"></script>
+</body>
+</html>

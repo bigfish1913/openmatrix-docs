@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>配置 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../" class="logo"><img src="../../logo-horizontal.svg" alt="OpenMatrix" height="32"></a>
+      <div class="nav-links">
+        <a href="../../#features">功能</a>
+        <a href="../../#comparison">对比</a>
+        <a href="../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>API 参考</h4>
+        <ul>
+          <li><a href="../cli/">CLI 命令</a></li>
+          <li><a href="./" class="active">配置</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="docs-content">
+      <article>
+        <h1>配置</h1>
+        <p>在项目根目录创建 <code>.openmatrixrc.json</code>：</p>
+        <div class="code-block">
+          <pre><code>{
+  "quality": {
+    "tdd": false,
+    "minCoverage": 60,
+    "strictLint": true,
+    "securityScan": true
+  },
+  "approvalPoints": ["plan", "merge"],
+  "agents": { "maxConcurrent": 3 }
+}</code></pre>
+        </div>
+        <h2>配置项</h2>
+        <table>
+          <thead><tr><th>配置</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>quality.tdd</code></td><td>boolean</td><td>false</td><td>是否启用 TDD 模式</td></tr>
+            <tr><td><code>quality.minCoverage</code></td><td>number</td><td>60</td><td>最低覆盖率要求</td></tr>
+            <tr><td><code>quality.strictLint</code></td><td>boolean</td><td>true</td><td>严格 Lint 检查</td></tr>
+            <tr><td><code>quality.securityScan</code></td><td>boolean</td><td>true</td><td>安全扫描</td></tr>
+            <tr><td><code>approvalPoints</code></td><td>string[]</td><td>[]</td><td>审批点</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </main>
+  </div>
+  <script src="../../main.js"></script>
+</body>
+</html>

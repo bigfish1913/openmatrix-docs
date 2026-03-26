@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>质量级别 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../../" class="logo"><img src="../../../logo-horizontal.svg" alt="OpenMatrix" height="32"></a>
+      <div class="nav-links">
+        <a href="../../../#features">功能</a>
+        <a href="../../../#comparison">对比</a>
+        <a href="../../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>核心概念</h4>
+        <ul>
+          <li><a href="../phases/">Phase 与 Task</a></li>
+          <li><a href="./" class="active">质量级别</a></li>
+          <li><a href="../meetings/">Meeting 机制</a></li>
+        </ul>
+      </div>
+    </aside>
+    <main class="docs-content">
+      <article>
+        <h1>质量级别</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>级别</th><th>TDD</th><th>覆盖率</th><th>Lint</th><th>安全</th><th>AI验收</th><th>场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>strict</code></td><td>✅</td><td>&gt;80%</td><td>✅</td><td>✅</td><td>✅</td><td>🏭 生产代码</td>
+            </tr>
+            <tr>
+              <td><code>balanced</code></td><td>❌</td><td>&gt;60%</td><td>✅</td><td>✅</td><td>✅</td><td>📦 日常开发</td>
+            </tr>
+            <tr>
+              <td><code>fast</code></td><td>❌</td><td>&gt;20%</td><td>❌</td><td>❌</td><td>❌</td><td>🏃 快速原型</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2>六道质量门禁</h2>
+        <ol>
+          <li>编译检查 <code>npm run build</code></li>
+          <li>测试运行 <code>npm test</code></li>
+          <li>覆盖率检查 &gt;80%/60%/20%</li>
+          <li>Lint 检查无 error</li>
+          <li>安全扫描 <code>npm audit</code></li>
+          <li>验收标准全部满足</li>
+        </ol>
+      </article>
+    </main>
+  </div>
+  <script src="../../../main.js"></script>
+</body>
+</html>
