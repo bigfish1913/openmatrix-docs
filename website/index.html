@@ -56,7 +56,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="badge">v0.1.1 现已发布</div>
+        <div class="badge">v0.1.7 现已发布</div>
         <h1>TDD + 质量门禁 + 全自动执行<br><span class="highlight">AI 任务编排系统</span></h1>
         <p class="hero-subtitle">
           自动化 ≠ 牺牲质量 | 高质量 ≠ 手动操作
@@ -77,16 +77,16 @@
         </div>
         <div class="hero-highlights">
           <div class="highlight-item">
+            <span class="highlight-icon">🪄</span>
+            <span>自动调用</span>
+          </div>
+          <div class="highlight-item">
             <span class="highlight-icon">🧪</span>
             <span>TDD 内置</span>
           </div>
           <div class="highlight-item">
             <span class="highlight-icon">📊</span>
             <span>80% 覆盖率</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-icon">🔒</span>
-            <span>安全扫描</span>
           </div>
           <div class="highlight-item">
             <span class="highlight-icon">🤖</span>
@@ -109,7 +109,12 @@
 
 <span class="text-green">✓</span> Skills 已安装到 ~/.claude/commands/om/
 
-<span class="prompt">$</span> <span class="text-muted"># 开始任务</span>
+<span class="prompt">$</span> <span class="text-muted"># 直接输入任务，自动调用 /om</span>
+<span class="text-muted"># 不需要输入命令，只需描述任务</span>
+
+实现用户登录功能
+
+<span class="text-blue">🪄 自动调用:</span> /om:start 实现用户登录功能
 
 <span class="text-blue">┌─────────────────────────────────────────┐</span>
 <span class="text-blue">│</span> 问题 0: 选择质量级别                     <span class="text-blue">│</span>
@@ -120,7 +125,6 @@
 <span class="text-blue">└─────────────────────────────────────────┘</span>
 
 <span class="text-green">✓</span> 6 道质量门禁验证通过
-<span class="text-green">✓</span> 覆盖率: 85%
 <span class="text-green">✓</span> AI 验收完成
 <span class="text-green">状态:</span> 任务完成 ✅</code></pre>
           </div>
@@ -150,6 +154,17 @@
           </div>
           <h3>结构化任务编排</h3>
           <p>Phase → Task → Subagent 的清晰层级，让复杂项目井然有序。每个任务都有明确的输入、输出和验收标准。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="#00D26A" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4" fill="#00D26A"/>
+              <path d="M16 4V16" stroke="#00D26A" stroke-width="2" stroke-dasharray="2 2"/>
+            </svg>
+          </div>
+          <h3>🪄 自动调用</h3>
+          <p>直接输入任务描述即可自动调用 /om，无需手动输入命令。支持"实现..."、"修复..."等多种触发词。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
