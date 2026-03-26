@@ -55,8 +55,10 @@
         <table>
           <thead><tr><th>命令</th><th>说明</th></tr></thead>
           <tbody>
+            <tr><td><code>/om</code></td><td>默认入口 - 直接输入任务描述即可启动</td></tr>
             <tr><td><code>/om:start</code></td><td>启动新任务 (第一个问题选质量级别)</td></tr>
             <tr><td><code>/om:auto</code></td><td>全自动执行 - 无阻塞、无确认</td></tr>
+            <tr><td><code>/om:check</code></td><td>自动检测项目改进建议</td></tr>
             <tr><td><code>/om:status</code></td><td>查看当前状态</td></tr>
             <tr><td><code>/om:approve</code></td><td>审批决策</td></tr>
             <tr><td><code>/om:meeting</code></td><td>处理阻塞问题</td></tr>
@@ -65,6 +67,15 @@
             <tr><td><code>/om:report</code></td><td>生成报告</td></tr>
           </tbody>
         </table>
+        <h2>🪄 自动调用</h2>
+        <p>安装后，直接输入任务描述即可自动调用 <code>/om</code>：</p>
+        <div class="code-block">
+          <pre><code># 无需输入命令
+实现用户登录功能
+
+# 自动触发
+/om:start 实现用户登录功能</code></pre>
+        </div>
         <h2>安装</h2>
         <div class="code-block">
           <pre><code>npm install -g openmatrix
