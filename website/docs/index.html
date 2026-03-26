@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>快速开始 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="../" class="logo">
+        <img src="../logo-horizontal.svg" alt="OpenMatrix" height="32">
+      </a>
+      <div class="nav-links">
+        <a href="../#features">功能</a>
+        <a href="../#how-it-works">工作原理</a>
+        <a href="./" class="active">文档</a>
+        <a href="https://github.com/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <!-- Sidebar -->
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>开始使用</h4>
+        <ul>
+          <li><a href="./" class="active">介绍</a></li>
+          <li><a href="./installation">安装</a></li>
+          <li><a href="./quick-start">快速开始</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h4>核心概念</h4>
+        <ul>
+          <li><a href="./phases">Phase 与 Task</a></li>
+          <li><a href="./quality-levels">质量级别</a></li>
+          <li><a href="./meetings">Meeting 机制</a></li>
+          <li><a href="./skills">Skills</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <h4>API 参考</h4>
+        <ul>
+          <li><a href="./cli">CLI 命令</a></li>
+          <li><a href="./config">配置</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="docs-content">
+      <article>
+        <h1>快速开始</h1>
+        <p class="lead">
+          OpenMatrix 是一个 AI 原生的任务编排框架，帮助你管理复杂的开发项目。
+          本指南将帮助你在 5 分钟内上手。
+        </p>
+
+        <h2 id="installation">安装</h2>
+        <p>OpenMatrix 需要 Node.js 18+ 环境。你可以通过 npm 全局安装：</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code>npm install -g openmatrix</code></pre>
+        </div>
+        <p>或者使用 npx 直接运行：</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code>npx openmatrix start</code></pre>
+        </div>
+
+        <h2 id="first-task">第一个任务</h2>
+        <p>在你的项目目录中运行以下命令：</p>
+        <div class="code-block">
+          <button class="copy-btn" onclick="copyCode(this)">复制</button>
+          <pre><code>npx openmatrix start "实现用户认证系统"</code></pre>
+        </div>
+        <p>OpenMatrix 会自动：</p>
+        <ol>
+          <li>分析任务需求</li>
+          <li>拆解为多个 Phase 和 Task</li>
+          <li>询问质量级别</li>
+          <li>开始执行任务</li>
+        </ol>
+
+        <h2 id="quality-levels">质量级别</h2>
+        <p>OpenMatrix 提供三种质量级别：</p>
+        <div class="quality-table">
+          <table>
+            <thead>
+              <tr>
+                <th>级别</th>
+                <th>TDD</th>
+                <th>覆盖率</th>
+                <th>适用场景</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="quality-badge strict">strict</span></td>
+                <td>✅</td>
+                <td>>80%</td>
+                <td>生产代码</td>
+              </tr>
+              <tr>
+                <td><span class="quality-badge balanced">balanced</span></td>
+                <td>❌</td>
+                <td>>60%</td>
+                <td>日常开发</td>
+              </tr>
+              <tr>
+                <td><span class="quality-badge fast">fast</span></td>
+                <td>❌</td>
+                <td>>20%</td>
+                <td>快速原型</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="next-steps">下一步</h2>
+        <ul>
+          <li><a href="./phases">了解 Phase 与 Task 的概念</a></li>
+          <li><a href="./quality-levels">深入了解质量级别</a></li>
+          <li><a href="./cli">查看所有 CLI 命令</a></li>
+        </ul>
+      </article>
+    </main>
+  </div>
+
+  <script src="../main.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OpenMatrix - AI 原生任务编排框架，让复杂的多步骤任务自动化变得简单可靠">
+  <meta name="keywords" content="AI, 任务编排, 自动化, 开源, Claude, GPT, 开发工具">
+  <meta property="og:title" content="OpenMatrix - AI 原生任务编排框架">
+  <meta property="og:description" content="让 AI 成为你的项目经理">
+  <meta property="og:type" content="website">
+  <title>OpenMatrix - AI 原生任务编排框架</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="/" class="logo">
+        <img src="logo-horizontal.svg" alt="OpenMatrix" height="32">
+      </a>
+      <div class="nav-links">
+        <a href="#features">功能</a>
+        <a href="#how-it-works">工作原理</a>
+        <a href="/docs">文档</a>
+        <a href="https://github.com/openmatrix" target="_blank">GitHub</a>
+        <a href="/docs/getting-started" class="btn btn-primary btn-sm">开始使用</a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">v1.0 现已发布</div>
+        <h1>AI 原生任务编排<br><span class="highlight">让开发更简单</span></h1>
+        <p class="hero-subtitle">
+          OpenMatrix 是下一代任务编排框架，通过结构化的 Phase → Task → Subagent 层级，
+          让 AI 驱动的复杂项目变得可控、可追踪、高质量。
+        </p>
+        <div class="hero-actions">
+          <a href="/docs/getting-started" class="btn btn-primary btn-lg">
+            <span>开始使用</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="https://github.com/openmatrix" class="btn btn-secondary btn-lg" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-value">10K+</span>
+            <span class="stat-label">GitHub Stars</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">贡献者</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value">50K+</span>
+            <span class="stat-label">npm 周下载</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-window">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="window-title">terminal</span>
+          </div>
+          <div class="window-body">
+            <pre><code><span class="prompt">$</span> npx openmatrix start
+
+<span class="text-green">✓</span> 初始化项目结构...
+<span class="text-green">✓</span> 检测到 3 个 Phase
+<span class="text-blue">→</span> Phase 1: 设计阶段
+    <span class="text-green">✓</span> TASK-001: 架构设计
+    <span class="text-green">✓</span> TASK-002: 数据模型
+<span class="text-blue">→</span> Phase 2: 开发阶段
+    <span class="text-orange">◉</span> TASK-003: API 接口 <span class="text-muted">(进行中)</span>
+    <span class="text-muted">□ TASK-004: 前端页面</span>
+    <span class="text-muted">□ TASK-005: 测试</span>
+
+<span class="text-green">质量门禁:</span> strict 模式
+<span class="text-green">覆盖率:</span> 85%
+<span class="text-green">状态:</span> 运行中...</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>为什么选择 OpenMatrix？</h2>
+        <p>专为 AI 辅助开发设计的任务编排框架</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="2" y="2" width="8" height="8" rx="2" stroke="#00D26A" stroke-width="2"/>
+              <rect x="12" y="2" width="8" height="8" rx="2" fill="#00D26A"/>
+              <rect x="22" y="2" width="8" height="8" rx="2" stroke="#3B82F6" stroke-width="2"/>
+              <rect x="2" y="12" width="8" height="8" rx="2" stroke="#3B82F6" stroke-width="2"/>
+              <rect x="12" y="12" width="8" height="8" rx="2" fill="#00D26A"/>
+              <rect x="22" y="12" width="8" height="8" rx="2" stroke="#F59E0B" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>结构化任务编排</h3>
+          <p>Phase → Task → Subagent 的清晰层级，让复杂项目井然有序。每个任务都有明确的输入、输出和验收标准。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="12" stroke="#00D26A" stroke-width="2"/>
+              <path d="M16 8V16L22 20" stroke="#00D26A" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="2" fill="#00D26A"/>
+            </svg>
+          </div>
+          <h3>三级质量门禁</h3>
+          <p>strict / balanced / fast 三种模式，内置 TDD、覆盖率检查、安全扫描，确保代码质量。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="#3B82F6" stroke-width="2"/>
+              <circle cx="16" cy="16" r="4" fill="#00D26A"/>
+              <circle cx="8" cy="11" r="2" fill="#00D26A"/>
+              <circle cx="24" cy="11" r="2" fill="#00D26A"/>
+              <circle cx="8" cy="21" r="2" fill="#F59E0B"/>
+              <circle cx="24" cy="21" r="2" fill="#F59E0B"/>
+            </svg>
+          </div>
+          <h3>AI 原生设计</h3>
+          <p>与 Claude、GPT 等大模型深度集成，通过 Skills 扩展能力，而非硬编码。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M4 16H12M20 16H28M16 4V12M16 20V28" stroke="#00D26A" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="4" fill="#00D26A"/>
+            </svg>
+          </div>
+          <h3>智能阻塞处理</h3>
+          <p>Meeting 机制自动识别阻塞点和决策点，记录问题并跳过可选任务，确保流程不中断。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="4" y="4" width="24" height="24" rx="4" stroke="#00D26A" stroke-width="2"/>
+              <path d="M10 16L14 20L22 12" stroke="#00D26A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>完整可追溯</h3>
+          <p>每个任务都有详细的执行日志和状态追踪，支持回滚和重试，让一切尽在掌控。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="12" stroke="#00D26A" stroke-width="2"/>
+              <path d="M16 10V16" stroke="#00D26A" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="16" cy="20" r="1.5" fill="#00D26A"/>
+            </svg>
+          </div>
+          <h3>开源免费</h3>
+          <p>MIT 协议，完全开源。社区驱动发展，欢迎贡献代码、提交 Issue 或参与讨论。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>工作原理</h2>
+        <p>三步开始 AI 驱动的开发之旅</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>定义任务</h3>
+          <p>使用自然语言描述你的项目目标，OpenMatrix 会自动拆解为可执行的 Phase 和 Task。</p>
+          <div class="code-block">
+            <code>/om:start "实现用户认证系统"</code>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>选择质量级别</h3>
+          <p>根据项目需求选择 strict / balanced / fast 模式，OpenMatrix 会自动配置质量门禁。</p>
+          <div class="quality-options">
+            <div class="quality-option">
+              <span class="quality-badge strict">strict</span>
+              <span>80% 覆盖率 + TDD</span>
+            </div>
+            <div class="quality-option">
+              <span class="quality-badge balanced">balanced</span>
+              <span>60% 覆盖率</span>
+            </div>
+            <div class="quality-option">
+              <span class="quality-badge fast">fast</span>
+              <span>快速原型</span>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>自动执行</h3>
+          <p>AI 驱动的 Subagent 会自动执行每个任务，遇到阻塞自动记录，完成后统一处理。</p>
+          <div class="execution-flow">
+            <div class="flow-item done">设计</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item done">开发</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item active">测试</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">部署</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>准备好开始了吗？</h2>
+      <p>加入数千名开发者，体验 AI 驱动的任务编排</p>
+      <div class="cta-actions">
+        <a href="/docs/getting-started" class="btn btn-primary btn-lg">开始使用</a>
+        <a href="https://github.com/openmatrix" class="btn btn-secondary btn-lg" target="_blank">查看 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="logo-horizontal.svg" alt="OpenMatrix" height="24">
+          <p>AI 原生任务编排框架</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>产品</h4>
+            <a href="#features">功能</a>
+            <a href="/docs">文档</a>
+            <a href="/pricing">定价</a>
+          </div>
+          <div class="footer-column">
+            <h4>社区</h4>
+            <a href="https://github.com/openmatrix" target="_blank">GitHub</a>
+            <a href="https://discord.gg/openmatrix" target="_blank">Discord</a>
+            <a href="https://twitter.com/openmatrix" target="_blank">Twitter</a>
+          </div>
+          <div class="footer-column">
+            <h4>资源</h4>
+            <a href="/blog">博客</a>
+            <a href="/changelog">更新日志</a>
+            <a href="/contributors">贡献者</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 OpenMatrix. MIT License.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
