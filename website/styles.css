@@ -669,3 +669,72 @@ a:hover {
     margin: 0 auto var(--spacing-md);
   }
 }
+
+/* Comparison Section */
+.comparison {
+  padding: var(--spacing-3xl) 0;
+  background: var(--color-bg-secondary);
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  margin-top: var(--spacing-xl);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comparison-table th {
+  background: var(--color-bg-secondary);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.comparison-table th.highlight {
+  background: rgba(0, 210, 106, 0.15);
+  color: var(--color-matrix-green);
+}
+
+.comparison-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.comparison-table td.highlight {
+  background: rgba(0, 210, 106, 0.05);
+  color: var(--color-matrix-green);
+  font-weight: 600;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:hover td {
+  background: var(--color-bg-secondary);
+}
+
+.comparison-table tr:hover td.highlight {
+  background: rgba(0, 210, 106, 0.1);
+}
+
+@media (max-width: 768px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: var(--spacing-md);
+    font-size: 0.875rem;
+  }
+}

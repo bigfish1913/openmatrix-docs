@@ -41,7 +41,7 @@
         <a href="#features">功能</a>
         <a href="#how-it-works">工作原理</a>
         <a href="/docs">文档</a>
-        <a href="https://github.com/openmatrix" target="_blank">GitHub</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
         <a href="/docs/getting-started" class="btn btn-primary btn-sm">开始使用</a>
       </div>
       <button class="mobile-menu-btn" aria-label="菜单">
@@ -56,11 +56,11 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="badge">v1.0 现已发布</div>
-        <h1>AI 原生任务编排<br><span class="highlight">让开发更简单</span></h1>
+        <div class="badge">v0.1.1 现已发布</div>
+        <h1>TDD + 质量门禁 + 全自动执行<br><span class="highlight">AI 任务编排系统</span></h1>
         <p class="hero-subtitle">
-          OpenMatrix 是下一代任务编排框架，通过结构化的 Phase → Task → Subagent 层级，
-          让 AI 驱动的复杂项目变得可控、可追踪、高质量。
+          自动化 ≠ 牺牲质量 | 高质量 ≠ 手动操作<br>
+          一句话启动，让 AI 成为你的项目经理
         </p>
         <div class="hero-actions">
           <a href="/docs/getting-started" class="btn btn-primary btn-lg">
@@ -102,21 +102,20 @@
             <span class="window-title">terminal</span>
           </div>
           <div class="window-body">
-            <pre><code><span class="prompt">$</span> npx openmatrix start
+            <pre><code><span class="prompt">$</span> /om:start 实现用户登录功能
 
-<span class="text-green">✓</span> 初始化项目结构...
-<span class="text-green">✓</span> 检测到 3 个 Phase
-<span class="text-blue">→</span> Phase 1: 设计阶段
-    <span class="text-green">✓</span> TASK-001: 架构设计
-    <span class="text-green">✓</span> TASK-002: 数据模型
-<span class="text-blue">→</span> Phase 2: 开发阶段
-    <span class="text-orange">◉</span> TASK-003: API 接口 <span class="text-muted">(进行中)</span>
-    <span class="text-muted">□ TASK-004: 前端页面</span>
-    <span class="text-muted">□ TASK-005: 测试</span>
+<span class="text-blue">┌─────────────────────────────────────────┐</span>
+<span class="text-blue">│</span> 问题 0: 选择质量级别                     <span class="text-blue">│</span>
+<span class="text-blue">├─────────────────────────────────────────┤</span>
+<span class="text-blue">│</span> 🚀 strict   → TDD + 80%覆盖率 + AI验收  <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚖️ balanced  → 60%覆盖率 + AI验收        <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚡ fast      → 无质量门禁 (快速原型)      <span class="text-blue">│</span>
+<span class="text-blue">└─────────────────────────────────────────┘</span>
 
-<span class="text-green">质量门禁:</span> strict 模式
-<span class="text-green">覆盖率:</span> 85%
-<span class="text-green">状态:</span> 运行中...</code></pre>
+<span class="text-green">✓</span> 6 道质量门禁验证通过
+<span class="text-green">✓</span> 覆盖率: 85%
+<span class="text-green">✓</span> AI 验收完成
+<span class="text-green">状态:</span> 任务完成 ✅</code></pre>
           </div>
         </div>
       </div>
@@ -153,8 +152,8 @@
               <circle cx="16" cy="16" r="2" fill="#00D26A"/>
             </svg>
           </div>
-          <h3>三级质量门禁</h3>
-          <p>strict / balanced / fast 三种模式，内置 TDD、覆盖率检查、安全扫描，确保代码质量。</p>
+          <h3>三级质量配置</h3>
+          <p>strict / balanced / fast 三种模式，内置 TDD、覆盖率检查、安全扫描、AI 验收，确保代码质量。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
@@ -258,6 +257,72 @@
     </div>
   </section>
 
+  <!-- Comparison Section -->
+  <section id="comparison" class="comparison">
+    <div class="container">
+      <div class="section-header">
+        <h2>为什么选择 OpenMatrix？</h2>
+        <p>与其他 AI 任务编排工具对比</p>
+      </div>
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>特性</th>
+              <th class="highlight">OpenMatrix</th>
+              <th>superpowers</th>
+              <th>gsd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100% 自动化</td>
+              <td class="highlight">✅ auto 模式</td>
+              <td>❌ 50%</td>
+              <td>❌ 60%</td>
+            </tr>
+            <tr>
+              <td>TDD 内置</td>
+              <td class="highlight">✅ strict 模式</td>
+              <td>❌ 需手动</td>
+              <td>❌ 无</td>
+            </tr>
+            <tr>
+              <td>覆盖率强制</td>
+              <td class="highlight">✅ 60-80%</td>
+              <td>❌ 无</td>
+              <td>❌ 无</td>
+            </tr>
+            <tr>
+              <td>安全扫描</td>
+              <td class="highlight">✅ npm audit</td>
+              <td>❌ 无</td>
+              <td>❌ 无</td>
+            </tr>
+            <tr>
+              <td>AI 验收</td>
+              <td class="highlight">✅ Reviewer Agent</td>
+              <td>❌ 无</td>
+              <td>部分</td>
+            </tr>
+            <tr>
+              <td>阻塞不中断</td>
+              <td class="highlight">✅ Meeting 机制</td>
+              <td>❌ 停止</td>
+              <td>❌ 停止</td>
+            </tr>
+            <tr>
+              <td>上手难度</td>
+              <td class="highlight">⚡ 一句话开始</td>
+              <td>中等</td>
+              <td>较高</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="cta">
     <div class="container">
@@ -265,7 +330,7 @@
       <p>加入数千名开发者，体验 AI 驱动的任务编排</p>
       <div class="cta-actions">
         <a href="/docs/getting-started" class="btn btn-primary btn-lg">开始使用</a>
-        <a href="https://github.com/openmatrix" class="btn btn-secondary btn-lg" target="_blank">查看 GitHub</a>
+        <a href="https://github.com/bigfish1913/openmatrix" class="btn btn-secondary btn-lg" target="_blank">查看 GitHub</a>
       </div>
     </div>
   </section>
@@ -287,7 +352,7 @@
           </div>
           <div class="footer-column">
             <h4>社区</h4>
-            <a href="https://github.com/openmatrix" target="_blank">GitHub</a>
+            <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
             <a href="https://discord.gg/openmatrix" target="_blank">Discord</a>
             <a href="https://twitter.com/openmatrix" target="_blank">Twitter</a>
           </div>
