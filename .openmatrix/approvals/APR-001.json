@@ -1,0 +1,32 @@
+{
+  "meetingId": "APR-001",
+  "taskId": "TASK-003",
+  "type": "blocking",
+  "status": "pending",
+  "title": "域名与服务器信息缺失",
+  "description": "需要用户提供域名和服务器信息才能完成部署",
+  "questions": [
+    {
+      "id": "domain",
+      "question": "您的域名是什么？",
+      "type": "text",
+      "required": true,
+      "example": "openmatrix.ai"
+    },
+    {
+      "id": "server",
+      "question": "服务器的 SSH 地址是什么？",
+      "type": "text",
+      "required": true,
+      "example": "root@123.45.67.89"
+    },
+    {
+      "id": "ssl_email",
+      "question": "用于 SSL 证书通知的邮箱地址？",
+      "type": "text",
+      "required": false,
+      "example": "admin@openmatrix.ai"
+    }
+  ],
+  "createdAt": "2026-03-26T00:00:00Z"
+}
