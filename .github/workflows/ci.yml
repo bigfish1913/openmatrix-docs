@@ -1,0 +1,142 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  paths-ignore:
+      - '.github/**'
+      - 'website/**'
+      - 'deploy/**'
+      - 'brand/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Upload coverage to Codecov
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage reports
+          path: ./coverage
+
+  test:
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+      - name: Build
+        run: npm run build
+
+  coverage:
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+      - name: Setup Node
+        uses: actions/setup-node@v3
+      with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        path: ~/.npm
+        key: ${{ runner.os }}-ubuntu-latest
+
+        restore-keys: true
+
+      - name: Cache npm dependencies
+        id: npm-cache
+        path: |
+          ~/.npm
+          key: ${{ hashFiles('**/package-lock.json') }}
+          ~/.cache/Cypress
+        key: ${{ runner.os }}-${{ runner.os }}
+          restore-keys: linux
+          key: ${{ runner.arch }}-${{ runner.arch }}
+          restore-keys: ${{ runner.arch }}
+        path: ${{ runner.temp }}/root/.npm-cache
+        command: npm ci --prefix ./root/.npm-cache --cache ${{ runner.temp }}
+
+      - name: Install project dependencies and build project
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tree-sitter build-essential
+        sudo rm -rf /var/lib/apt/lists
+        sudo apt-get install -y jq
+        sudo apt-get install -y moreutils
+        sudo apt-get install -y chalk
+        sudo apt-get install -y progress
+        sudo apt-get install -y commander
+        sudo apt-get install -y csv-parse
+        sudo apt-get install -y ora
+        sudo apt-get install -y pretty-hr
+        sudo apt-get install -y semver
+        sudo apt-get install -y simple-git-hooks
+        sudo apt-get install -y todt
+        sudo apt-get install -y handlebars
+        sudo apt-get install -y lodash
+        sudo apt-get install -y log-symbols
+        sudo apt-get install -y markdown-table
+        sudo apt-get install -y markdown-magic
+        sudo apt-get install -y markdown-it
+        sudo apt-get install -y ora
+        sudo apt-get install -y ora-cli
+        sudo apt-get install -y figlet
+        sudo apt-get install -y ora
+        echo "::add-output name=coverage::"
+        echo "::set-output name=coverage report::"
+        echo "::end-group::"
+
+        echo "::end-group::"
+    fi
+  env:
+    CI: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      with:
+        node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Coverage Report
+        run: npm run coverage
+        with:
+          CI: true
+        REPORT_DIR: ./coverage
+        REPORTS_DIR: ./coverage/reports
