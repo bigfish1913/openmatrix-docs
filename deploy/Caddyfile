@@ -1,0 +1,14 @@
+# 云服务器 Caddy 配置
+# 放置在云服务器 139.196.85.175 上
+
+matrix.laofu.online {
+    reverse_proxy 127.0.0.1:8080
+
+    # 自动 HTTPS
+    encode gzip
+
+    # 日志
+    log {
+        output file /var/log/caddy/matrix.log
+    }
+}

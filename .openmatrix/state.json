@@ -1,15 +1,23 @@
 {
   "runId": "run-001",
-  "status": "running",
+  "status": "completed_with_meetings",
   "mode": "auto",
   "qualityLevel": "strict",
   "approvalPoints": [],
-  "currentPhase": 1,
-  "currentTask": "TASK-001",
+  "currentPhase": 6,
+  "currentTask": null,
   "createdAt": "2026-03-26T00:00:00Z",
+  "completedAt": "2026-03-26T01:00:00Z",
   "taskConfig": {
     "channels": ["官网+开源平台", "社交媒体", "内容营销", "社区运营"],
     "targetUsers": "全部用户",
     "domain": "pending"
+  },
+  "summary": {
+    "totalPhases": 6,
+    "totalTasks": 19,
+    "completedTasks": 18,
+    "blockedTasks": 1,
+    "meetings": ["APR-001"]
   }
 }
