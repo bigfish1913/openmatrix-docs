@@ -95,15 +95,34 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="quality-gates-card">
-          <h4>六道质量门禁</h4>
-          <div class="gates-list">
-            <div class="gate-item"><span class="gate-num">1</span> 编译检查</div>
-            <div class="gate-item"><span class="gate-num">2</span> 测试运行</div>
-            <div class="gate-item"><span class="gate-num">3</span> 覆盖率 ≥80%</div>
-            <div class="gate-item"><span class="gate-num">4</span> Lint 无错误</div>
-            <div class="gate-item"><span class="gate-num">5</span> 安全扫描</div>
-            <div class="gate-item"><span class="gate-num">6</span> 验收标准</div>
+        <div class="code-window">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="window-title">terminal</span>
+          </div>
+          <div class="window-body">
+            <pre><code><span class="prompt">$</span> npm install -g openmatrix
+
+<span class="text-green">✓</span> Skills 已安装到 ~/.claude/commands/om/
+
+<span class="prompt">$</span> <span class="text-muted"># 开始任务</span>
+
+<span class="text-blue">┌─────────────────────────────────────────┐</span>
+<span class="text-blue">│</span> 问题 0: 选择质量级别                     <span class="text-blue">│</span>
+<span class="text-blue">├─────────────────────────────────────────┤</span>
+<span class="text-blue">│</span> 🚀 strict   → TDD + 80%覆盖率 + AI验收  <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚖️ balanced  → 60%覆盖率 + AI验收        <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚡ fast      → 无质量门禁 (快速原型)      <span class="text-blue">│</span>
+<span class="text-blue">└─────────────────────────────────────────┘</span>
+
+<span class="text-green">✓</span> 6 道质量门禁验证通过
+<span class="text-green">✓</span> 覆盖率: 85%
+<span class="text-green">✓</span> AI 验收完成
+<span class="text-green">状态:</span> 任务完成 ✅</code></pre>
           </div>
         </div>
       </div>
