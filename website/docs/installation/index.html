@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>安装 - OpenMatrix 文档</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../docs.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="../../" class="logo">
+        <img src="../../logo-horizontal.svg" alt="OpenMatrix" height="32">
+      </a>
+      <div class="nav-links">
+        <a href="../../#features">功能</a>
+        <a href="../../#comparison">对比</a>
+        <a href="../" class="active">文档</a>
+        <a href="https://github.com/bigfish1913/openmatrix" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-section">
+        <h4>开始使用</h4>
+        <ul>
+          <li><a href="../">介绍</a></li>
+          <li><a href="../getting-started/">快速开始</a></li>
+          <li><a href="./" class="active">安装</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="docs-content">
+      <article>
+        <h1>安装</h1>
+
+        <h2 id="requirements">系统要求</h2>
+        <ul>
+          <li>Node.js >= 18.0.0</li>
+          <li>npm / yarn / pnpm</li>
+          <li>Claude Code CLI</li>
+        </ul>
+
+        <h2 id="npm">NPM 安装 (推荐)</h2>
+        <div class="code-block">
+          <pre><code>npm install -g openmatrix</code></pre>
+        </div>
+
+        <h2 id="yarn">Yarn 安装</h2>
+        <div class="code-block">
+          <pre><code>yarn global add openmatrix</code></pre>
+        </div>
+
+        <h2 id="pnpm">PNPM 安装</h2>
+        <div class="code-block">
+          <pre><code>pnpm add -g openmatrix</code></pre>
+        </div>
+
+        <h2 id="verify">验证安装</h2>
+        <div class="code-block">
+          <pre><code>openmatrix --version
+openmatrix install-skills
+ls ~/.claude/commands/om/</code></pre>
+        </div>
+
+        <h2 id="from-source">从源码安装</h2>
+        <div class="code-block">
+          <pre><code>git clone https://github.com/bigfish1913/openmatrix.git
+cd openmatrix
+npm install
+npm run build
+npm link</code></pre>
+        </div>
+      </article>
+    </main>
+  </div>
+  <script src="../../main.js"></script>
+</body>
+</html>
