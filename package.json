@@ -1,48 +1,14 @@
 {
-  "name": "openmatrix",
+  "name": "openmatrix-docs",
   "version": "1.0.0",
-  "description": "AI 原生任务编排框架，  "main": "./src/index.js",
+  "description": "OpenMatrix 官方文档网站",
   "scripts": {
-    "start": "./src/commands/start.js",
-    "status": "./src/commands/status.js",
-    "meeting": "./src/commands/meeting.js",
-    "resume": "./src/commands/resume.js",
-    "config": "./src/commands/config.js"
+    "test": "echo \"Static site - no tests needed\" && exit 0",
+    "build": "echo \"Static site - no build needed\" && exit 0"
   },
-  "keywords": [
-    "openmatrix",
-    "task orchest",
-    "ai",
-    "automation",
-    "claude",
-    "gpt"
-    "developer tools"
-    "productivity"
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/openmatrix/openmatrix.git"
+    "url": "https://github.com/bigfish1913/openmatrix-docs.git"
   },
-  "bugs": {
-    "url": "https://github.com/openmatrix/openmatrix/issues"
-  },
-  "homepage": "https://openmatrix.ai"
   "license": "MIT"
-  "files": [
-    "README.md",
-    "LICENSE",
-    "CONTRIBUTING.md",
-    "src/index.js"
-  ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
-  "bin": {
-    "openmatrix": {
-      "description": "./bin/openmatrix.js",
-      "args": [
-        "start"
-      ]
-    }
-  }
 }
