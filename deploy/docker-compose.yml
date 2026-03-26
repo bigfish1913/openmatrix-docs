@@ -7,12 +7,12 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../website:/usr/share/nginx/html/website:ro
+      # WSL 路径映射 - 根据实际位置调整
+      - ../website:/usr/share/nginx/html:ro
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
-    networks:
-      - openmatrix-network
-
-networks:
-  openmatrix-network:
-    driver: bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
