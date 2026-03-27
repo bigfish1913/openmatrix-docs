@@ -1,10 +1,31 @@
 {
   "name": "openmatrix-docs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "OpenMatrix 官方文档网站",
   "scripts": {
-    "test": "echo \"Static site - no tests needed\" && exit 0",
-    "build": "echo \"Static site - no build needed\" && exit 0"
+    "xhs:login": "ts-node src/xiaohongshu/cli.ts login",
+    "xhs:post": "ts-node src/xiaohongshu/cli.ts post",
+    "xhs:status": "ts-node src/xiaohongshu/cli.ts status",
+    "test": "jest",
+    "test:e2e": "jest --config jest.e2e.config.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "playwright": "^1.42.0",
+    "commander": "^12.0.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/jest": "^29.5.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0"
   },
   "repository": {
     "type": "git",

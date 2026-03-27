@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage/
+
+# Xiaohongshu credentials (IMPORTANT: Never commit!)
+.xhs/
+cookies.json
+
+# OpenMatrix local state
+.openmatrix/
+
+# Temporary files
+*.tmp
+*.temp
