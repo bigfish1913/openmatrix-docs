@@ -4,6 +4,7 @@ mod memory;
 mod updater;
 mod llm;
 mod tasks;
+mod promotion;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
