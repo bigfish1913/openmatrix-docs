@@ -1,0 +1,23 @@
+[package]
+name = "autonomous-agent"
+version = "0.2.0"
+edition = "2021"
+description = "OpenMatrix 推广智能体 - AI 驱动的任务执行和推广助手"
+authors = ["OpenMatrix Team"]
+
+[dependencies]
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+clap = { version = "4.4", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+anyhow = "1.0"
+thiserror = "1.0"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+sha2 = "0.10"
+hex = "0.4"
+dirs = "5.0"
