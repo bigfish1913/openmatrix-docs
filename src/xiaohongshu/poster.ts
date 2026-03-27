@@ -1,5 +1,9 @@
 /**
  * 小红书发帖模块 - 改进版
+ *
+ * 支持：
+ * - 上传本地图片
+ * - 使用小红书文字配图功能
  */
 
 import { chromium, BrowserContext, Page } from 'playwright';
@@ -62,24 +66,32 @@ export class XhsPoster {
       console.log('等待编辑器加载...');
       await this.page.waitForTimeout(3000);
 
-      // 上传图片
-      if (content.images && content.images.length > 0) {
+      // 处理图片
+      if (content.useTextToImage) {
+        // 使用小红书文字配图
+        await this.useTextToImage(content.imagePrompt || content.title);
+      } else if (content.images && content.images.length > 0) {
+        // 上传本地图片
         await this.uploadImages(content.images);
       }
 
-      // 等待编辑器区域出现并点击
-      console.log('激活编辑器...');
+      // 等待图片处理
+      await this.page.waitForTimeout(2000);
 
-      // 尝试点击编辑器区域
-      const editorArea = await this.page.$('.editor-wrapper, .ql-container, [class*="editor"]');
-      if (editorArea) {
-        await editorArea.click();
-        await this.page.waitForTimeout(500);
+      // 填写标题
+      console.log('填写标题...');
+      const titleInput = await this.page.$('input[placeholder*="标题"], input[placeholder*="填写标题"]');
+      if (titleInput) {
+        await titleInput.fill(content.title);
       }
 
-      // 填写正文 - 直接键盘输入
+      // 填写正文
       console.log('填写正文...');
-      await this.page.keyboard.type(content.content, { delay: 30 });
+      const contentArea = await this.page.$('#post-textarea, div[contenteditable="true"], .content-input');
+      if (contentArea) {
+        await contentArea.click();
+        await this.page.keyboard.type(content.content, { delay: 30 });
+      }
 
       // 添加标签
       if (content.tags && content.tags.length > 0) {
@@ -97,12 +109,19 @@ export class XhsPoster {
       if (publishBtn) {
         await publishBtn.click();
       } else {
-        // 尝试快捷键
         await this.page.keyboard.press('Control+Enter');
       }
 
       // 等待结果
       await this.page.waitForTimeout(5000);
+
+      // 检查是否发布成功
+      const currentUrl = this.page.url();
+      if (currentUrl.includes('published=true')) {
+        console.log('✅ 发布成功！');
+        await this.close();
+        return { success: true, message: '发布成功' };
+      }
 
       console.log('✅ 发布请求已提交！');
       await this.close();
@@ -114,6 +133,39 @@ export class XhsPoster {
         success: false,
         message: `发布失败: ${error instanceof Error ? error.message : '未知错误'}`
       };
+    }
+  }
+
+  /**
+   * 使用小红书文字配图功能
+   */
+  private async useTextToImage(prompt: string): Promise<void> {
+    if (!this.page) return;
+
+    console.log('使用文字配图功能...');
+
+    // 点击"文字配图"按钮
+    const textToImageBtn = await this.page.$('button:has-text("文字配图"), text=文字配图');
+    if (textToImageBtn) {
+      await textToImageBtn.click();
+      await this.page.waitForTimeout(1000);
+
+      // 输入提示词
+      const promptInput = await this.page.$('textarea, input[placeholder*="描述"], input[placeholder*="输入"]');
+      if (promptInput) {
+        await promptInput.fill(prompt);
+        await this.page.waitForTimeout(500);
+
+        // 点击生成按钮
+        const generateBtn = await this.page.$('button:has-text("生成"), button:has-text("确定")');
+        if (generateBtn) {
+          await generateBtn.click();
+          console.log('等待图片生成...');
+          await this.page.waitForTimeout(5000); // 等待AI生成图片
+        }
+      }
+    } else {
+      console.log('未找到文字配图按钮，跳过');
     }
   }
 

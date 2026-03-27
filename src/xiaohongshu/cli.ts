@@ -52,6 +52,8 @@ program
   .option('-c, --content <content>', '笔记正文')
   .option('-i, --images <images...>', '图片路径')
   .option('--tags <tags...>', '话题标签')
+  .option('--text-to-image', '使用小红书AI文字配图')
+  .option('--image-prompt <prompt>', '文字配图提示词')
   .action(async (options) => {
     console.log(chalk.blue('=== 发布笔记 ===\n'));
 
@@ -123,7 +125,9 @@ program
       title: postOptions.title,
       content: postOptions.content,
       images: postOptions.images || [],
-      tags: postOptions.tags || []
+      tags: postOptions.tags || [],
+      useTextToImage: postOptions.textToImage,
+      imagePrompt: postOptions.imagePrompt
     });
 
     if (result.success) {

@@ -25,6 +25,10 @@ export interface PostContent {
   images: string[];
   /** 话题标签 */
   tags?: string[];
+  /** 使用文字配图（小红书AI生成） */
+  useTextToImage?: boolean;
+  /** 文字配图提示词 */
+  imagePrompt?: string;
 }
 
 export interface LoginResult {
