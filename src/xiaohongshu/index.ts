@@ -4,30 +4,30 @@
 
 import * as path from 'path';
 import * as os from 'os';
+import * as fs from 'fs';
 import { XhsConfig, PostContent, LoginResult, PostResult, SessionStatus } from './types';
-import { CookieStore } from './store';
 import { XhsLogin } from './login';
 import { XhsPoster } from './poster';
 
 export class Xiaohongshu {
   private config: XhsConfig;
-  private cookieStore: CookieStore;
   private loginModule: XhsLogin;
   private posterModule: XhsPoster;
+  private userDataDir: string;
 
   constructor(customConfig?: Partial<XhsConfig>) {
     // 默认配置
     this.config = {
       cookiePath: customConfig?.cookiePath ||
         path.join(os.homedir(), '.xhs', 'cookies.json'),
-      loginTimeout: customConfig?.loginTimeout || 180000, // 3分钟
+      loginTimeout: customConfig?.loginTimeout || 180000,
       maxRetries: customConfig?.maxRetries || 3,
       ...customConfig
     };
 
-    this.cookieStore = new CookieStore(this.config);
-    this.loginModule = new XhsLogin(this.config, this.cookieStore);
-    this.posterModule = new XhsPoster(this.config, this.cookieStore);
+    this.userDataDir = path.join(os.homedir(), '.xhs', 'browser-data-v2');
+    this.loginModule = new XhsLogin(this.config);
+    this.posterModule = new XhsPoster(this.config);
   }
 
   /**
@@ -48,20 +48,41 @@ export class Xiaohongshu {
    * 获取会话状态
    */
   async getStatus(): Promise<SessionStatus> {
-    return this.cookieStore.getCookieStatus();
+    // 检查浏览器数据目录是否存在
+    if (!fs.existsSync(this.userDataDir)) {
+      return { isLoggedIn: false };
+    }
+
+    // 检查目录内容
+    try {
+      const files = fs.readdirSync(this.userDataDir);
+      if (files.length === 0) {
+        return { isLoggedIn: false };
+      }
+
+      const stats = fs.statSync(this.userDataDir);
+
+      return {
+        isLoggedIn: true,
+        lastLogin: stats.mtime
+      };
+    } catch {
+      return { isLoggedIn: false };
+    }
   }
 
   /**
-   * 登出（清除 Cookie）
+   * 登出（清除浏览器数据）
    */
   async logout(): Promise<void> {
-    await this.cookieStore.clearCookies();
+    if (fs.existsSync(this.userDataDir)) {
+      fs.rmSync(this.userDataDir, { recursive: true, force: true });
+    }
     console.log('✅ 已清除登录信息');
   }
 }
 
 // 导出所有模块
 export * from './types';
-export * from './store';
 export * from './login';
 export * from './poster';
