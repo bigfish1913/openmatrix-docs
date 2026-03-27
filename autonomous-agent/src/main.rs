@@ -5,6 +5,7 @@ mod updater;
 mod llm;
 mod tasks;
 mod promotion;
+mod proxy;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
@@ -78,6 +79,11 @@ enum Commands {
         #[command(subcommand)]
         command: TaskCommands,
     },
+    /// Anthropic 协议代理
+    Proxy {
+        #[command(subcommand)]
+        command: ProxyCommands,
+    },
 }
 
 #[derive(Subcommand)]
@@ -100,6 +106,21 @@ enum TaskCommands {
     List,
     /// 显示任务状态
     Status { task_id: String },
+}
+
+#[derive(Subcommand)]
+enum ProxyCommands {
+    /// 启动代理服务器
+    Start {
+        /// 监听地址
+        #[arg(short, long, default_value = "127.0.0.1:8080")]
+        addr: String,
+        /// 默认 Provider
+        #[arg(short, long)]
+        provider: Option<String>,
+    },
+    /// 列出可用的 Provider
+    List,
 }
 
 struct Agent {
@@ -538,6 +559,69 @@ async fn main() -> Result<()> {
                 }
                 TaskCommands::Status { task_id } => {
                     println!("📊 任务状态: {}", task_id);
+                }
+            }
+        }
+        Some(Commands::Proxy { command }) => {
+            match command {
+                ProxyCommands::Start { addr, provider } => {
+                    println!("🚀 启动 Anthropic 协议代理服务器...");
+                    println!("   地址: {}", addr);
+                    if let Some(ref p) = provider {
+                        println!("   Provider: {}", p);
+                    }
+
+                    // 检测可用 Provider
+                    let providers = proxy::CompatibleProvider::auto_detect();
+                    if providers.is_empty() {
+                        println!("\n❌ 没有可用的 Provider，请配置环境变量:");
+                        println!("   ZHIPU_API_KEY      - 智谱 AI");
+                        println!("   MOONSHOT_API_KEY   - Moonshot AI");
+                        println!("   DEEPSEEK_API_KEY   - DeepSeek");
+                        println!("   OPENAI_API_KEY     - OpenAI");
+                        return Ok(());
+                    }
+
+                    println!("\n📋 可用的 Provider:\n");
+                    for p in &providers {
+                        println!("   {} {} - {}",
+                            if p.is_available() { "✅" } else { "❌" },
+                            p.name(),
+                            p.endpoint()
+                        );
+                    }
+
+                    // 选择 Provider
+                    if let Some(selected) = proxy::CompatibleProvider::get_priority_provider(&providers) {
+                        println!("\n✅ 使用 Provider: {}\n", selected.name());
+                        println!("端点: http://{}/v1/messages", addr);
+                        println!("\n💡 使用示例:");
+                        println!("   curl http://{}/v1/messages \\", addr);
+                        println!("     -H \"x-api-key: your-key\" \\");
+                        println!("     -H \"content-type: application/json\" \\");
+                        println!("     -d '{{\"model\": \"claude-3-opus\", \"messages\": [{{\"role\": \"user\", \"content\": \"Hello\"}}]}}'");
+                    }
+                }
+                ProxyCommands::List => {
+                    let providers = proxy::CompatibleProvider::auto_detect();
+
+                    println!("\n📋 可用的 Anthropic 兼容 Provider:\n");
+                    for provider in &providers {
+                        println!("  {} {} - {}",
+                            if provider.is_available() { "✅" } else { "❌" },
+                            provider.name(),
+                            provider.endpoint()
+                        );
+                    }
+
+                    if providers.is_empty() {
+                        println!("  无可用 Provider，请配置环境变量:");
+                        println!("    - ZHIPU_API_KEY      (智谱 AI)");
+                        println!("    - MOONSHOT_API_KEY   (Moonshot)");
+                        println!("    - DEEPSEEK_API_KEY   (DeepSeek)");
+                        println!("    - OPENAI_API_KEY     (OpenAI)");
+                    }
+                    println!();
                 }
             }
         }
