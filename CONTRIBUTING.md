@@ -123,17 +123,18 @@ npm run test:coverage
 ## 项目结构
 
 ```
-openmatrix/
-├── src/
-│   ├── core/           # 核心逻辑
-│   ├── commands/       # CLI 命令
-│   ├── agents/         # Agent 实现
-│   └── utils/          # 工具函数
-├── tests/
-│   ├── unit/           # 单元测试
-│   └── integration/    # 集成测试
-├── docs/               # 文档
-└── examples/           # 示例
+openmatrix-docs/
+├── autonomous-agent/     # Agent CLI 工具
+├── brand/                # 品牌资产
+├── content/              # 内容营销素材
+├── deploy/               # 部署脚本
+├── scaffolds/            # 脚手架模板
+├── tools/                # 工具和测试代码
+│   ├── scaffold/         # 脚手架生成器
+│   ├── xiaohongshu/      # 小红书工具
+│   └── tests/            # 测试代码
+├── website/              # 官方网站
+└── *.md                  # 项目文档
 ```
 
 ## 发布流程

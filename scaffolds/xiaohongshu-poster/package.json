@@ -1,0 +1,30 @@
+{
+  "name": "${name}",
+  "version": "1.0.0",
+  "description": "${description}",
+  "main": "dist/index.js",
+  "bin": {
+    "xhs": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/cli.ts",
+    "login": "ts-node src/cli.ts login",
+    "post": "ts-node src/cli.ts post",
+    "status": "ts-node src/cli.ts status",
+    "logout": "ts-node src/cli.ts logout"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "inquirer": "^8.2.6",
+    "playwright": "^1.42.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "license": "MIT"
+}

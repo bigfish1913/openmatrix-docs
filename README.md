@@ -23,7 +23,8 @@
   <p>
     <a href="https://matrix.laofu.online/">官网</a> •
     <a href="https://matrix.laofu.online/docs/">文档</a> •
-    <a href="https://github.com/bigfish1913/openmatrix">GitHub</a>
+    <a href="https://github.com/bigfish1913/openmatrix">GitHub</a> •
+    <a href="CONTRIBUTING.md">贡献指南</a>
   </p>
 </div>
 

@@ -1,0 +1,25 @@
+{
+  "name": "om-scaffold",
+  "version": "1.0.0",
+  "description": "OpenMatrix 脚手架工具",
+  "type": "module",
+  "bin": {
+    "om-scaffold": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm tools/scaffold/cli.ts"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.0.0",
+    "inquirer": "^8.2.6"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  },
+  "license": "MIT"
+}

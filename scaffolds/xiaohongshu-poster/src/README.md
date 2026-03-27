@@ -38,7 +38,7 @@ npm run xhs:login
 npm run xhs:post
 
 # 命令行参数发布
-npx ts-node src/xiaohongshu/cli.ts post \
+npx ts-node tools/xiaohongshu/cli.ts post \
   --title "笔记标题" \
   --content "笔记正文内容" \
   --images ./image1.jpg ./image2.jpg \
@@ -64,7 +64,7 @@ npm run xhs:logout
 ## 项目结构
 
 ```
-src/xiaohongshu/
+tools/xiaohongshu/
 ├── index.ts      # 主入口
 ├── types.ts      # 类型定义
 ├── store.ts      # Cookie 存储
