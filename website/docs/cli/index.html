@@ -96,6 +96,31 @@
 openmatrix install-skills     # 安装 Skills
 openmatrix start --init-only  # 仅初始化目录</code></pre>
         </div>
+
+        <h3>start 命令选项</h3>
+        <p><code>openmatrix start</code> 支持以下选项，用于非交互式启动：</p>
+        <table>
+          <thead>
+            <tr><th>选项</th><th>说明</th><th>示例</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--init-only</code></td><td>仅初始化 .openmatrix 目录</td><td><code>openmatrix start --init-only</code></td></tr>
+            <tr><td><code>--title</code></td><td>任务标题</td><td><code>--title "用户登录"</code></td></tr>
+            <tr><td><code>--description</code></td><td>任务描述</td><td><code>--description "实现JWT认证"</code></td></tr>
+            <tr><td><code>-q, --quality</code></td><td>质量级别 (strict/balanced/fast)</td><td><code>-q strict</code></td></tr>
+            <tr><td><code>-t, --tech-stack</code></td><td>技术栈</td><td><code>-t "React + Node"</code></td></tr>
+            <tr><td><code>--docs</code></td><td>文档级别 (full/minimal/none)</td><td><code>--docs minimal</code></td></tr>
+          </tbody>
+        </table>
+
+        <h3>非交互式示例</h3>
+        <div class="code-block">
+          <pre><code># 直接启动 strict 级别任务，无需交互
+openmatrix start --title "用户登录" --description "实现JWT认证" -q strict
+
+# 指定技术栈
+openmatrix start --title "API开发" -q balanced -t "Node.js + PostgreSQL"</code></pre>
+        </div>
       </article>
     </main>
   </div>
