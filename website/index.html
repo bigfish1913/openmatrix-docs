@@ -389,6 +389,79 @@
     </div>
   </footer>
 
+  <!-- Share FAB -->
+  <button class="share-fab" id="shareFab" aria-label="分享">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+  </button>
+
+  <!-- Share Modal -->
+  <div class="share-overlay" id="shareOverlay">
+    <div class="share-modal" id="shareModal">
+      <div class="share-modal-header">
+        <h3>分享到</h3>
+        <button class="share-modal-close" id="shareModalClose" aria-label="关闭">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="share-channels">
+        <button class="share-channel" id="shareWeChat" data-channel="wechat">
+          <div class="share-channel-icon wechat-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm3.97 3.44c-1.86-.015-3.666.64-4.996 1.756-1.742 1.463-2.566 3.691-1.745 5.882.82 2.19 3.07 3.508 5.346 3.698.493.041.993.03 1.488-.035a.639.639 0 01.53.073l1.405.823a.234.234 0 00.122.039.213.213 0 00.214-.218c0-.053-.02-.105-.035-.156l-.288-1.093a.44.44 0 01.157-.491c1.358-.999 2.217-2.467 2.217-4.1 0-3.263-2.928-6.075-6.415-6.178zM14.4 13.09c.477 0 .864.393.864.877a.87.87 0 01-.864.877.87.87 0 01-.864-.877c0-.484.387-.877.864-.877zm4.324 0c.477 0 .864.393.864.877a.87.87 0 01-.864.877.87.87 0 01-.864-.877c0-.484.387-.877.864-.877z"/>
+            </svg>
+          </div>
+          <span>微信</span>
+        </button>
+        <button class="share-channel" id="shareCopy" data-channel="copy">
+          <div class="share-channel-icon copy-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+          </div>
+          <span>复制链接</span>
+        </button>
+        <button class="share-channel" id="shareNative" data-channel="native" style="display:none;">
+          <div class="share-channel-icon more-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+            </svg>
+          </div>
+          <span>更多</span>
+        </button>
+      </div>
+
+      <!-- WeChat QR Section -->
+      <div class="share-qr-section" id="shareQrSection" style="display:none;">
+        <div class="share-qr-tip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>打开微信扫一扫，分享给好友或朋友圈</span>
+        </div>
+        <div class="share-qr-wrapper">
+          <img id="shareQrImage" alt="扫码分享" />
+        </div>
+      </div>
+
+      <!-- Share Card Preview -->
+      <div class="share-card-preview">
+        <div class="share-card-img">
+          <img src="og-image.png" alt="OpenMatrix" onerror="this.style.display='none'">
+        </div>
+        <div class="share-card-text">
+          <strong>OpenMatrix - AI 原生任务编排框架</strong>
+          <p>TDD + 严格质量门禁 + 全自动执行的 AI 任务编排系统</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="main.js"></script>
 </body>
 </html>

@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.toggle('active');
       mobileMenuBtn.classList.toggle('active');
     });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+      });
+    });
   }
 
   // Smooth scroll for anchor links
@@ -54,12 +62,103 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // Terminal typing animation
-  const codeLines = document.querySelectorAll('.window-body code');
-  if (codeLines.length > 0) {
-    animateTerminal();
-  }
+  // ===== Share Feature =====
+  initShareFeature();
 });
+
+// ===== Share Feature =====
+function initShareFeature() {
+  const shareFab = document.getElementById('shareFab');
+  const shareOverlay = document.getElementById('shareOverlay');
+  const shareModalClose = document.getElementById('shareModalClose');
+  const shareWeChat = document.getElementById('shareWeChat');
+  const shareCopy = document.getElementById('shareCopy');
+  const shareNative = document.getElementById('shareNative');
+  const shareQrSection = document.getElementById('shareQrSection');
+  const shareQrImage = document.getElementById('shareQrImage');
+
+  // Show Web Share API button if supported
+  if (navigator.share) {
+    shareNative.style.display = '';
+  }
+
+  // Open share modal
+  shareFab.addEventListener('click', () => {
+    shareOverlay.classList.add('active');
+    shareQrSection.style.display = 'none'; // Reset QR section
+    document.body.style.overflow = 'hidden';
+  });
+
+  // Close share modal
+  function closeShareModal() {
+    shareOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  shareModalClose.addEventListener('click', closeShareModal);
+
+  shareOverlay.addEventListener('click', (e) => {
+    if (e.target === shareOverlay) closeShareModal();
+  });
+
+  // WeChat: show QR code
+  shareWeChat.addEventListener('click', () => {
+    const pageUrl = window.location.href;
+    const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(pageUrl)}&bgcolor=ffffff&color=0A1628`;
+    shareQrImage.src = qrApiUrl;
+    shareQrSection.style.display = 'block';
+  });
+
+  // Copy link
+  shareCopy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      showToast('链接已复制，可粘贴到微信分享');
+      closeShareModal();
+    } catch {
+      // Fallback for older browsers
+      const textarea = document.createElement('textarea');
+      textarea.value = window.location.href;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showToast('链接已复制，可粘贴到微信分享');
+      closeShareModal();
+    }
+  });
+
+  // Native share (Web Share API)
+  shareNative.addEventListener('click', async () => {
+    try {
+      await navigator.share({
+        title: 'OpenMatrix - AI 原生任务编排框架',
+        text: 'TDD + 严格质量门禁 + 全自动执行的 AI 任务编排系统',
+        url: window.location.href
+      });
+      closeShareModal();
+    } catch (err) {
+      // User cancelled or not supported, do nothing
+    }
+  });
+}
+
+// Toast notification
+function showToast(message) {
+  let toast = document.querySelector('.share-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'share-toast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add('active');
+  setTimeout(() => {
+    toast.classList.remove('active');
+  }, 2000);
+}
 
 // Terminal animation
 function animateTerminal() {
