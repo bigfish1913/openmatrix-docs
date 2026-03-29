@@ -52,3 +52,26 @@ export interface SessionStatus {
   lastLogin?: Date;
   cookieExpiry?: Date;
 }
+
+// ============ 数据读取相关 ============
+
+export interface NoteStats {
+  title: string;
+  publishDate: string;
+  views: number;
+  likes: number;
+  comments: number;
+  collects: number;
+  shares: number;
+}
+
+export interface DataOverview {
+  totalNotes: number;
+  totalViews: number;
+  totalLikes: number;
+  totalComments: number;
+  totalCollects: number;
+  totalShares: number;
+  bestPerformer: NoteStats | null;
+  todayNotes: NoteStats[];
+}

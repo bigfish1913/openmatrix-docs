@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./target/release/autonomous-agent.exe status:*)"
+      "Bash(./target/release/autonomous-agent.exe status:*)",
+      "WebSearch"
     ]
   }
 }

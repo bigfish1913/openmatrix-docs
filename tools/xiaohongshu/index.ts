@@ -5,18 +5,19 @@
 import * as path from 'path';
 import * as os from 'os';
 import * as fs from 'fs';
-import { XhsConfig, PostContent, LoginResult, PostResult, SessionStatus } from './types';
+import { XhsConfig, PostContent, LoginResult, PostResult, SessionStatus, NoteStats, DataOverview } from './types';
 import { XhsLogin } from './login';
 import { XhsPoster } from './poster';
+import { XhsReader } from './reader';
 
 export class Xiaohongshu {
   private config: XhsConfig;
   private loginModule: XhsLogin;
   private posterModule: XhsPoster;
+  private readerModule: XhsReader;
   private userDataDir: string;
 
   constructor(customConfig?: Partial<XhsConfig>) {
-    // 默认配置
     this.config = {
       cookiePath: customConfig?.cookiePath ||
         path.join(os.homedir(), '.xhs', 'cookies.json'),
@@ -28,6 +29,7 @@ export class Xiaohongshu {
     this.userDataDir = path.join(os.homedir(), '.xhs', 'browser-data-v2');
     this.loginModule = new XhsLogin(this.config);
     this.posterModule = new XhsPoster(this.config);
+    this.readerModule = new XhsReader();
   }
 
   /**
@@ -45,15 +47,27 @@ export class Xiaohongshu {
   }
 
   /**
+   * 获取笔记数据
+   */
+  async getNotesStats(): Promise<NoteStats[]> {
+    return this.readerModule.getNotesStats();
+  }
+
+  /**
+   * 获取数据概览
+   */
+  async getOverview(): Promise<DataOverview> {
+    return this.readerModule.getOverview();
+  }
+
+  /**
    * 获取会话状态
    */
   async getStatus(): Promise<SessionStatus> {
-    // 检查浏览器数据目录是否存在
     if (!fs.existsSync(this.userDataDir)) {
       return { isLoggedIn: false };
     }
 
-    // 检查目录内容
     try {
       const files = fs.readdirSync(this.userDataDir);
       if (files.length === 0) {
@@ -78,7 +92,7 @@ export class Xiaohongshu {
     if (fs.existsSync(this.userDataDir)) {
       fs.rmSync(this.userDataDir, { recursive: true, force: true });
     }
-    console.log('✅ 已清除登录信息');
+    console.log('已清除登录信息');
   }
 }
 
@@ -86,3 +100,4 @@ export class Xiaohongshu {
 export * from './types';
 export * from './login';
 export * from './poster';
+export * from './reader';

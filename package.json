@@ -10,6 +10,7 @@
     "xhs:add": "ts-node tools/xiaohongshu/cli.ts add",
     "xhs:list": "ts-node tools/xiaohongshu/cli.ts list",
     "xhs:import": "ts-node tools/xiaohongshu/cli.ts import",
+    "xhs:stats": "ts-node tools/xiaohongshu/cli.ts stats",
     "scaffold": "ts-node tools/scaffold/cli.ts"
   },
   "dependencies": {

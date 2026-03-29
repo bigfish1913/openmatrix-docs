@@ -1,20 +1,65 @@
 [
   {
-    "title": "开源推荐：OpenMatrix AI任务编排",
-    "content": "让 AI 自动帮你完成复杂开发任务！\n\n🎯 核心功能\n\n• 智能任务拆解\n大任务自动拆成小步骤\n\n• 自动代码生成\nAI 直接写代码\n\n• 质量保障\n自动测试和代码审查\n\n• Git 自动提交\n每个步骤都有记录\n\n💡 适用场景\n\n✅ 新功能开发\n✅ Bug 修复\n✅ 代码重构\n✅ 技术文档生成\n\n🚀 开源免费，欢迎 Star！\n\ngithub.com/bigfish1913/openmatrix",
-    "tags": ["AI编程", "开发工具", "开源项目"],
-    "useTextToImage": true
+    "title": "还在手动写代码？这个AI工具让我效率翻了3倍",
+    "content": "姐妹们！作为前端开发我真的要安利这个工具😭\n\n之前每次接到需求都要熬夜写代码\n现在用 OpenMatrix 直接描述需求\nAI 就自动帮我写完了！\n\n操作超简单👇\n\n第1步：告诉它你要做什么\n第2步：AI 自动拆成小任务\n第3步：逐个写代码+自动测试\n第4步：直接提交到 Git\n\n全程不用自己动手\n审核一下结果就行\n\n用了两周真的回不去了\n以前一天的任务现在半天搞定\n\n开源免费的！去 GitHub 搜 OpenMatrix\n\n#AI编程 #前端开发 #程序员日常 #效率工具",
+    "tags": ["AI编程", "前端开发", "程序员日常", "效率工具"],
+    "useTextToImage": true,
+    "imagePrompt": "AI编程效率工具"
   },
   {
-    "title": "程序员效率提升神器",
-    "content": "分享一个让我效率翻倍的工具！\n\nOpenMatrix 是一个 AI 任务编排框架\n\n🌟 它能做什么？\n\n1️⃣ 自动拆解复杂任务\n2️⃣ AI 自动写代码\n3️⃣ 自动运行测试\n4️⃣ 自动提交 Git\n\n🎯 适合谁用？\n\n• 独立开发者\n• 技术团队\n• 需要频繁写代码的人\n\n用了之后真的回不去！\n\n#AI工具 #程序员 #效率提升",
-    "tags": ["AI工具", "程序员", "效率提升"],
-    "useTextToImage": true
+    "title": "程序员副业必备！这个开源工具太香了",
+    "content": "做独立开发最痛苦的是什么？\n\n需求太多！时间太少！\n一个人干五个人的活😭\n\n直到我发现了 OpenMatrix\n一个 AI 任务编排框架\n\n它最大的优势就是👇\n\n✅ 你只管描述需求\n✅ AI 自动拆解+执行\n✅ 自动测试验证\n✅ 自动提交代码\n\n相当于给自己请了个免费助手\n\n我上周用它一周做了3个小项目\n以前可能要一个月\n\n关键是完全开源免费！\n\ngithub.com/bigfish1913/openmatrix\n\n#独立开发 #开源项目 #程序员副业 #AI工具",
+    "tags": ["独立开发", "开源项目", "程序员副业", "AI工具"],
+    "useTextToImage": true,
+    "imagePrompt": "独立开发AI助手"
   },
   {
-    "title": "AI 写代码的正确姿势",
-    "content": "很多人用 AI 写代码还在手动复制粘贴\n\n今天分享一个更高效的方法 👇\n\nOpenMatrix 是一个 AI 任务编排系统\n\n它的工作流程：\n\n1️⃣ 你描述要做什么\n2️⃣ AI 自动拆成小任务\n3️⃣ 逐个执行并写代码\n4️⃣ 自动测试验证\n5️⃣ 自动提交到 Git\n\n全程自动化，你只需要审核结果\n\n🚀 开源免费\n\n#AI编程 #开发效率 #工具推荐",
-    "tags": ["AI编程", "开发效率", "工具推荐"],
-    "useTextToImage": true
+    "title": "救命！AI写代码居然这么好用",
+    "content": "我不是标题党 这个工具真的救命！\n\n之前领导给我一周的活\n我用 OpenMatrix 两天就干完了\n\n具体有多好用？给你们看👇\n\n🔍 智能任务拆解\n一个复杂需求自动拆成10个小任务\n每个都有清晰的执行步骤\n\n💻 自动代码生成\nAI 根据任务描述直接写代码\n质量还不错（比实习生强）\n\n🧪 自动测试\n写完代码自动跑测试\n有问题自动修\n\n📝 Git 全自动\n每个步骤自动提交\n随时可以回滚\n\n说实话我一开始也觉得不靠谱\n试了之后：真香！\n\n#AI编程 #程序员 #开发工具 #效率提升",
+    "tags": ["AI编程", "程序员", "开发工具", "效率提升"],
+    "useTextToImage": true,
+    "imagePrompt": "AI自动写代码"
+  },
+  {
+    "title": "发现一个宝藏开源项目！程序员必看",
+    "content": "最近在 GitHub 上发现了一个超赞的项目⭐\n\n叫 OpenMatrix，是一个 AI 任务编排框架\n\n简单说就是：你说话，AI 干活\n\n举个例子🌰\n\n你说：帮我实现一个登录功能\n\n它会自动：\n1️⃣ 设计数据库表结构\n2️⃣ 写后端 API\n3️⃣ 写前端页面\n4️⃣ 写单元测试\n5️⃣ 全部提交到 Git\n\n而且每个步骤都可以审查\n不满意可以重来\n\n三级质量保证模式：\n🔸 strict - 生产级，自动跑测试\n🔸 balanced - 日常开发，适度验证\n🔸 fast - 快速原型，先跑起来再说\n\n开源免费，MIT 协议\n\ngithub.com/bigfish1913/openmatrix\n\n#开源项目 #GitHub #AI工具 #程序员推荐",
+    "tags": ["开源项目", "GitHub", "AI工具", "程序员推荐"],
+    "useTextToImage": true,
+    "imagePrompt": "GitHub开源宝藏项目"
+  },
+  {
+    "title": "告别996！AI帮写代码的正确打开方式",
+    "content": "程序员朋友们！\n你们还在一个个文件手动写代码吗？\n\n今天分享一个真正能帮你省时间的方法👇\n\n我发现大部分开发工作其实是重复的\n写CRUD、写测试、写文档...\n\nOpenMatrix 就是帮你把这些重复活自动化了\n\n它的核心理念：\n\n🧠 你负责思考\n描述清楚要做什么就行\n\n🤖 AI负责执行\n拆任务、写代码、跑测试\n\n👀 你负责审核\n看结果，不满意就让它改\n\n这样做开发效率真的翻倍\n\n而且不用担心代码质量\n它会自动跑测试+代码审查\n\n开源免费！GitHub 搜 OpenMatrix\n\n#程序员 #AI编程 #告别加班 #开发工具",
+    "tags": ["程序员", "AI编程", "告别加班", "开发工具"],
+    "useTextToImage": true,
+    "imagePrompt": "AI帮程序员写代码"
+  },
+  {
+    "title": "不会吧不会吧 还有人不知道AI能自动写代码？",
+    "content": "2026年了！AI写代码已经不是新闻了\n但很多人还是只会用 ChatGPT 一问一答\n\n今天教你们一个更高级的玩法👇\n\nOpenMatrix - AI任务编排系统\n\n它跟普通 AI 对话有什么区别？\n\n普通AI：你问一句它答一句\n还得自己复制粘贴到编辑器\n\nOpenMatrix：\n✅ 自动理解整个需求\n✅ 自动拆解成子任务\n✅ 自动逐个执行\n✅ 自动测试验证\n✅ 自动提交到代码仓库\n\n从需求到交付，全链路自动化！\n\n适合这些场景：\n• 新功能开发\n• Bug修复\n• 代码重构\n• 写技术文档\n\n重点是：完全开源免费！\n\ngithub.com/bigfish1913/openmatrix\n\n#AI编程 #开发效率 #工具推荐 #程序员必看",
+    "tags": ["AI编程", "开发效率", "工具推荐", "程序员必看"],
+    "useTextToImage": true,
+    "imagePrompt": "AI自动编程工具"
+  },
+  {
+    "title": "这个开源项目让我从码农变成了代码审核员",
+    "content": "分享一个改变我工作方式的工具\n\n我现在的日常是这样的👇\n\n早上到公司\n打开 OpenMatrix\n输入今天的任务清单\n\n然后...就等着看结果了😂\n\nAI 会自动：\n✨ 理解需求\n✨ 拆解任务\n✨ 写代码\n✨ 跑测试\n✨ 提交PR\n\n我只需要：\n👀 审核代码\n💬 提修改意见\n✅ 合并代码\n\n从每天写8小时代码\n变成审核4小时\n效率直接翻倍\n\n而且代码质量比我自己写的还好\n因为每次都有自动测试+审查\n\n这个工具叫 OpenMatrix\n开源免费，MIT 协议\n\ngithub.com/bigfish1913/openmatrix\n\n#程序员日常 #AI工具 #开源项目 #工作效率",
+    "tags": ["程序员日常", "AI工具", "开源项目", "工作效率"],
+    "useTextToImage": true,
+    "imagePrompt": "程序员审核AI代码"
+  },
+  {
+    "title": "独立开发者福音！一个人干一个团队的活",
+    "content": "做独立开发最累的是什么？\n\n一个人要干产品、设计、前端、后端、测试...\n\n现在我用了 OpenMatrix 之后\n感觉多了好几个队友！\n\n它就像一个全能助手：\n\n👨‍💻 后端开发 - 帮你写API、写数据库\n🎨 前端开发 - 帮你写页面、写样式\n🧪 测试工程师 - 帮你跑测试\n📝 技术文档 - 帮你写文档\n🔧 DevOps - 帮你管理Git\n\n而且它是任务编排系统\n不是简单的代码补全\n\n你可以给一个大的需求\n它会自动拆解、分配、执行\n每个步骤都有记录和验证\n\n上个月我一个人做了两个App\n用的就是它\n\n开源免费！去 GitHub 搜吧\n\n#独立开发 #AI编程 #一人公司 #开发工具",
+    "tags": ["独立开发", "AI编程", "一人公司", "开发工具"],
+    "useTextToImage": true,
+    "imagePrompt": "独立开发者AI助手"
+  },
+  {
+    "title": "AI编程工具测评！这个开源项目真的被低估了",
+    "content": "测了不下10个AI编程工具\n给大家说说我最推荐的一个👇\n\nOpenMatrix - AI任务编排框架\n\n为什么推荐它？\n\n1️⃣ 不只是代码补全\n其他工具：补全一行代码\n它：完成整个任务\n\n2️⃣ 有质量保证\n自动跑测试+代码审查\n不是瞎写一通\n\n3️⃣ 全流程可追溯\n每一步做了什么都有记录\n随时可以回滚\n\n4️⃣ 三种质量模式\nstrict/balanced/fast\n根据场景选择\n\n5️⃣ 完全开源免费\nMIT 协议，随便用\n\n跟 Cursor、Copilot 最大的区别：\n它们是辅助你写代码\nOpenMatrix 是帮你完成任务\n\n级别完全不一样！\n\ngithub.com/bigfish1913/openmatrix\n\n#AI编程 #工具测评 #程序员 #开源推荐",
+    "tags": ["AI编程", "工具测评", "程序员", "开源推荐"],
+    "useTextToImage": true,
+    "imagePrompt": "AI编程工具测评对比"
   }
 ]

@@ -198,6 +198,66 @@ program
     }
   });
 
+// 数据统计命令
+program
+  .command('stats')
+  .description('查看笔记数据统计')
+  .option('--today', '只看今日数据')
+  .option('--best', '显示表现最好的笔记')
+  .option('--export <file>', '导出数据到 JSON 文件')
+  .action(async (options) => {
+    console.log(chalk.blue('=== 笔记数据统计 ===\n'));
+
+    try {
+      const overview = await xhs.getOverview();
+
+      if (overview.totalNotes === 0) {
+        console.log(chalk.yellow('暂无笔记数据'));
+        return;
+      }
+
+      if (options.export) {
+        const notes = await xhs.getNotesStats();
+        const exportPath = path.resolve(process.cwd(), options.export);
+        fs.writeFileSync(exportPath, JSON.stringify(notes, null, 2), 'utf-8');
+        console.log(chalk.green(`✅ 数据已导出到: ${options.export}`));
+        return;
+      }
+
+      // 总览
+      console.log(chalk.cyan('📊 总览'));
+      console.log(chalk.white(`  笔记总数: ${overview.totalNotes}`));
+      console.log(chalk.white(`  总浏览量: ${overview.totalViews}`));
+      console.log(chalk.white(`  总点赞数: ${overview.totalLikes}`));
+      console.log(chalk.white(`  总评论数: ${overview.totalComments}`));
+      console.log(chalk.white(`  总收藏数: ${overview.totalCollects}`));
+      console.log(chalk.white(`  总转发数: ${overview.totalShares}`));
+
+      // 今日数据
+      if (options.today || overview.todayNotes.length > 0) {
+        console.log(chalk.cyan('\n📅 今日笔记'));
+        if (overview.todayNotes.length === 0) {
+          console.log(chalk.gray('  今日暂无发布'));
+        } else {
+          overview.todayNotes.forEach(note => {
+            console.log(chalk.white(`  ${note.title}`));
+            console.log(chalk.gray(`    浏览:${note.views} 点赞:${note.likes} 评论:${note.comments} 收藏:${note.collects} 转发:${note.shares}`));
+          });
+        }
+      }
+
+      // 最佳笔记
+      if (options.best && overview.bestPerformer) {
+        const best = overview.bestPerformer;
+        console.log(chalk.cyan('\n🏆 最佳笔记'));
+        console.log(chalk.white(`  ${best.title}`));
+        console.log(chalk.gray(`    浏览:${best.views} 点赞:${best.likes} 评论:${best.comments} 收藏:${best.collects} 转发:${best.shares}`));
+      }
+    } catch (error) {
+      console.log(chalk.red(`❌ ${error instanceof Error ? error.message : '读取数据失败'}`));
+    }
+  });
+
 // 解析命令行参数
 program.parse();
 
