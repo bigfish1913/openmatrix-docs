@@ -109,24 +109,24 @@
 
 <span class="text-green">✓</span> Skills 已安装到 ~/.claude/commands/om/
 
-<span class="prompt">$</span> <span class="text-muted"># 直接输入任务，自动调用 /om</span>
+<span class="prompt">$</span> <span class="text-muted"># 直接描述任务，自动调用 /om</span>
 <span class="text-muted"># 不需要输入命令，只需描述任务</span>
 
 实现用户登录功能
 
 <span class="text-blue">🪄 自动调用:</span> /om:start 实现用户登录功能
 
-<span class="text-blue">┌─────────────────────────────────────────┐</span>
-<span class="text-blue">│</span> 问题 0: 选择质量级别                     <span class="text-blue">│</span>
-<span class="text-blue">├─────────────────────────────────────────┤</span>
-<span class="text-blue">│</span> 🚀 strict   → TDD + 80%覆盖率 + AI验收  <span class="text-blue">│</span>
-<span class="text-blue">│</span> ⚖️ balanced  → 60%覆盖率 + AI验收        <span class="text-blue">│</span>
-<span class="text-blue">│</span> ⚡ fast      → 无质量门禁 (快速原型)      <span class="text-blue">│</span>
-<span class="text-blue">└─────────────────────────────────────────┘</span>
+<span class="text-blue">┌──────────────────────────────────────────┐</span>
+<span class="text-blue">│</span> Phase 1: 设计  →  ✓ 架构设计完成          <span class="text-blue">│</span>
+<span class="text-blue">│</span> Phase 2: 开发  →  ✓ 代码实现完成          <span class="text-blue">│</span>
+<span class="text-blue">│</span> Phase 3: 测试  →  ✓ 6 道质量门禁通过      <span class="text-blue">│</span>
+<span class="text-blue">│</span> Phase 4: 报告  →  ✓ 质量报告已生成        <span class="text-blue">│</span>
+<span class="text-blue">└──────────────────────────────────────────┘</span>
 
 <span class="text-green">✓</span> 6 道质量门禁验证通过
 <span class="text-green">✓</span> AI 验收完成
-<span class="text-green">状态:</span> 任务完成 ✅</code></pre>
+<span class="text-green">✓</span> 质量报告: report-TASK-001.md
+<span class="text-green">状态:</span> 任务完成</code></pre>
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@
             </svg>
           </div>
           <h3>AI 原生设计</h3>
-          <p>与 Claude、GPT 等大模型深度集成，通过 Skills 扩展能力，而非硬编码。</p>
+          <p>与 Claude Code 深度集成，通过 Skills 扩展能力，而非硬编码。</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">
@@ -272,7 +272,7 @@
             <div class="flow-arrow">→</div>
             <div class="flow-item active">测试</div>
             <div class="flow-arrow">→</div>
-            <div class="flow-item">部署</div>
+            <div class="flow-item">报告</div>
           </div>
         </div>
       </div>
@@ -324,6 +324,12 @@
             <tr>
               <td>AI 验收</td>
               <td class="highlight">✅ Reviewer Agent</td>
+              <td>❌ 无</td>
+              <td>部分</td>
+            </tr>
+            <tr>
+              <td>质量报告</td>
+              <td class="highlight">✅ JSON + MD</td>
               <td>❌ 无</td>
               <td>部分</td>
             </tr>
