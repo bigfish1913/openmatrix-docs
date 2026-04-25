@@ -1,3 +1,5 @@
+# OpenMatrix
+
 <div align="center">
   <img src="brand/logo-horizontal.svg" alt="OpenMatrix" width="300">
 
@@ -68,7 +70,7 @@
 
 ---
 
-## Skills 命令一览 (v0.2.16)
+## Skills 命令一览 (v0.2.23)
 
 | 命令 | 用途 |
 |------|------|
@@ -78,6 +80,7 @@
 | `/om:debug` | 🔧 **系统化调试** - 四阶段根因分析 + 自动修复验证循环 |
 | `/om:feature` | ⚡ **轻量小需求** - 快速迭代小功能，无完整任务追踪 |
 | `/om:deploy` | 🚀 **自动部署** - 扫描部署环境，支持 Docker/K8s/npm 等 |
+| `/om:test` | 🧪 **测试生成** - 自动生成或改进测试用例 |
 | `/om:start` | 启动新任务 (第一个问题选质量级别) |
 | `/om:auto` | 🚀 **全自动执行** - 无阻塞、无确认、直接完成 |
 | `/check` | 🔍 **项目检查** - 自动检测可改进点并提供升级建议 |
@@ -190,7 +193,7 @@ npm install -g openmatrix
 
 ---
 
-## 新功能亮点 (v0.2.16)
+## 新功能亮点 (v0.2.23)
 
 ### /om:debug 系统化调试
 
@@ -230,6 +233,16 @@ npm install -g openmatrix
 /om:feature 修复按钮样式
 ```
 
+### /om:test 测试生成
+
+**适用场景**: 自动生成或改进测试用例
+
+```bash
+/om:test                      # 为当前代码生成测试
+/om:test --coverage           # 目标覆盖率模式
+/om:test e2e                  # 生成 E2E 测试
+```
+
 ### /om:resume 智能恢复
 
 **适用场景**: 恢复中断的任务，自动检测轻量/完整流程
@@ -250,6 +263,7 @@ npm install -g openmatrix
 - [x] 自动部署 (/om:deploy)
 - [x] 轻量小需求 (/om:feature)
 - [x] 智能恢复 (/om:resume)
+- [x] 测试生成 (/om:test)
 - [x] 执行循环持久化
 - [ ] VSCode 扩展
 - [ ] CI/CD 集成

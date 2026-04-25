@@ -22,10 +22,10 @@
   },
   "statistics": {
     "totalTasks": 9,
-    "completed": 2,
-    "inProgress": 0,
+    "completed": 3,
+    "inProgress": 1,
     "failed": 0,
-    "pending": 7,
+    "pending": 5,
     "scheduled": 0,
     "blocked": 0,
     "waiting": 0,
