@@ -56,7 +56,7 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <div class="badge">v0.1.58 现已发布</div>
+        <div class="badge">v0.2.16 现已发布</div>
         <h1>TDD + 质量门禁 + 全自动执行<br><span class="highlight">AI 任务编排系统</span></h1>
         <p class="hero-subtitle">
           自动化 ≠ 牺牲质量 | 高质量 ≠ 手动操作
@@ -110,20 +110,19 @@
 <span class="text-green">✓</span> Skills 已安装到 ~/.claude/commands/om/
 
 <span class="prompt">$</span> <span class="text-muted"># 直接描述任务，自动调用 /om</span>
-<span class="text-muted"># 不需要输入命令，只需描述任务</span>
 
 实现用户登录功能
 
 <span class="text-blue">🪄 自动调用:</span> /om:start 实现用户登录功能
 
 <span class="text-blue">┌──────────────────────────────────────────┐</span>
-<span class="text-blue">│</span> Phase 1: 设计  →  ✓ 架构设计完成          <span class="text-blue">│</span>
-<span class="text-blue">│</span> Phase 2: 开发  →  ✓ 代码实现完成          <span class="text-blue">│</span>
-<span class="text-blue">│</span> Phase 3: 测试  →  ✓ 6 道质量门禁通过      <span class="text-blue">│</span>
-<span class="text-blue">│</span> Phase 4: 报告  →  ✓ 质量报告已生成        <span class="text-blue">│</span>
+<span class="text-blue">│</span> 问题 0: 选择质量级别                       <span class="text-blue">│</span>
+<span class="text-blue">│</span> 🚀 strict  → TDD + 80%覆盖率 + AI验收     <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚖️ balanced → 60%覆盖率 + AI验收          <span class="text-blue">│</span>
+<span class="text-blue">│</span> ⚡ fast     → 无质量门禁 (快速原型)        <span class="text-blue">│</span>
 <span class="text-blue">└──────────────────────────────────────────┘</span>
 
-<span class="text-green">✓</span> 6 道质量门禁验证通过
+<span class="text-green">✓</span> 7 道质量门禁验证通过
 <span class="text-green">✓</span> AI 验收完成
 <span class="text-green">✓</span> 质量报告: report-TASK-001.md
 <span class="text-green">状态:</span> 任务完成</code></pre>
@@ -340,6 +339,18 @@
               <td>❌ 停止</td>
             </tr>
             <tr>
+              <td>系统化调试</td>
+              <td class="highlight">✅ /om:debug</td>
+              <td>❌ 无</td>
+              <td>❌ 无</td>
+            </tr>
+            <tr>
+              <td>自动部署</td>
+              <td class="highlight">✅ /om:deploy</td>
+              <td>❌ 无</td>
+              <td>❌ 无</td>
+            </tr>
+            <tr>
               <td>上手难度</td>
               <td class="highlight">⚡ 一句话开始</td>
               <td>中等</td>
@@ -347,6 +358,48 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>Skills 命令一览 <span style="font-size:0.6em;color:#00D26A;">v0.2.16</span></h2>
+        <p>覆盖开发全流程的 AI 技能集</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>🪄 /om</h3>
+          <p>默认入口，直接输入任务描述即可启动，自动路由到最合适的流程。</p>
+          <div class="code-block"><code>/om 实现用户登录</code></div>
+        </div>
+        <div class="feature-card">
+          <h3>🔧 /om:debug</h3>
+          <p>四阶段根因分析 + 自动修复验证循环。不做根因调查，不许提修复方案。</p>
+          <div class="code-block"><code>/om:debug "API 返回 500 错误"</code></div>
+        </div>
+        <div class="feature-card">
+          <h3>🚀 /om:deploy</h3>
+          <p>自动扫描部署环境，支持 Docker、K8s、Helm、npm、Vercel、Netlify 等。</p>
+          <div class="code-block"><code>/om:deploy --dry-run</code></div>
+        </div>
+        <div class="feature-card">
+          <h3>⚡ /om:feature</h3>
+          <p>轻量小需求，快速迭代小功能，无完整任务追踪，分步 Git 提交。</p>
+          <div class="code-block"><code>/om:feature 修复导航栏样式</code></div>
+        </div>
+        <div class="feature-card">
+          <h3>🔄 /om:resume</h3>
+          <p>智能恢复中断任务，自动检测轻量/完整流程，无需手动判断。</p>
+          <div class="code-block"><code>/om:resume</code></div>
+        </div>
+        <div class="feature-card">
+          <h3>🧠 /om:brainstorm</h3>
+          <p>先探索需求和设计，再执行任务。适合复杂功能的前期规划。</p>
+          <div class="code-block"><code>/om:brainstorm 用户系统设计</code></div>
+        </div>
       </div>
     </div>
   </section>
