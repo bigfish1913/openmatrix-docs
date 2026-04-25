@@ -11,7 +11,15 @@
     "xhs:list": "ts-node tools/xiaohongshu/cli.ts list",
     "xhs:import": "ts-node tools/xiaohongshu/cli.ts import",
     "xhs:stats": "ts-node tools/xiaohongshu/cli.ts stats",
-    "scaffold": "ts-node tools/scaffold/cli.ts"
+    "scaffold": "ts-node tools/scaffold/cli.ts",
+    "csdn:login": "ts-node tools/csdn/cli.ts login",
+    "csdn:post": "ts-node tools/csdn/cli.ts post",
+    "csdn:status": "ts-node tools/csdn/cli.ts status",
+    "csdn:schedule": "ts-node tools/csdn/cli.ts schedule",
+    "csdn:add": "ts-node tools/csdn/cli.ts add",
+    "csdn:list": "ts-node tools/csdn/cli.ts list",
+    "csdn:import": "ts-node tools/csdn/cli.ts import",
+    "csdn:stats": "ts-node tools/csdn/cli.ts stats"
   },
   "dependencies": {
     "chalk": "^4.1.2",

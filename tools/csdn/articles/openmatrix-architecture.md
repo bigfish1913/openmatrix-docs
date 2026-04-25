@@ -1,0 +1,466 @@
+# OpenMatrix 架构解析：基于 Harness 思想的 AI 任务编排系统
+
+## 引言：AI 编码的信任危机
+
+AI 编码工具已经非常强大，但用户仍然不敢完全信任。为什么？
+
+```
+第一层：AI 补全代码（Copilot）→ 解决「写」的问题
+第二层：AI 对话编程（Claude Code）→ 解决「复杂任务」的问题
+第三层：流程编排 + 质量保障（OpenMatrix）→ 解决「可信交付」的问题
+```
+
+OpenMatrix 定位在第三层——不是让 AI 写得更好，而是让 AI 的产出**可信、可交付**。
+
+本文将深入解析 OpenMatrix 的架构设计，以及它如何借鉴 Harness 的核心思想实现可靠的 AI 任务编排。
+
+---
+
+## Harness 核心思想回顾
+
+Harness 是业界领先的 DevOps 平台，其核心架构思想有三点：
+
+### 1. 委托模型（Delegate Architecture）
+
+Harness 本身不执行任何部署操作，而是通过 Delegate（代理）来完成：
+- Harness 只做决策和编排
+- 实际执行由 Delegate 在目标环境中完成
+- Delegate 可以部署在任何地方（Kubernetes、VM、本地）
+
+### 2. 状态持久化（State Persistence）
+
+Harness 将所有执行状态持久化存储：
+- 执行历史、审批记录、变量状态全部保存
+- 支持断点续传，中断后可以恢复
+- 不依赖内存状态，重启不丢失数据
+
+### 3. 流程编排引擎（Pipeline Engine）
+
+Harness 提供强大的流程编排能力：
+- Stage（阶段）级别的流程控制
+- Step（步骤）级别的原子操作
+- 支持并行执行、条件分支、审批节点
+- 阻塞节点不会中断整体流程
+
+---
+
+## OpenMatrix 架构设计
+
+OpenMatrix 借鉴 Harness 的思想，设计了 AI 任务编排的完整架构。
+
+### 架构总览
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      OpenMatrix 架构                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐  │
+│   │   Skills    │────▶│    CLI      │────▶│  Orchestrator│  │
+│   │  (入口层)   │     │  (命令层)   │     │  (编排引擎)  │  │
+│   └─────────────┘     └─────────────┘     └─────────────┘  │
+│                                                   │         │
+│                                                   ▼         │
+│                                           ┌─────────────┐   │
+│                                           │   Storage   │   │
+│                                           │  (持久化)   │   │
+│                                           └─────────────┘   │
+│                                                   │         │
+│                                                   ▼         │
+│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐  │
+│   │ AgentRunner │────▶│ SubagentTask│────▶│ Claude Code │  │
+│   │ (委托执行)  │     │ (任务配置)  │     │  (Delegate) │  │
+│   └─────────────┘     └─────────────┘     └─────────────┘  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 核心组件
+
+| 组件 | 对应 Harness 概念 | 职责 |
+|-----|------------------|------|
+| Skills | Pipeline Trigger | 用户入口，触发执行流程 |
+| CLI | CLI/API | 命令行接口，管理状态 |
+| Orchestrator | Pipeline Engine | 任务编排，状态流转 |
+| Storage | State Manager | 状态持久化，断点续传 |
+| AgentRunner | Stage Executor | 准备任务配置 |
+| Claude Code Agent | Delegate | 实际执行任务 |
+
+---
+
+## 一、委托模型：不执行，只编排
+
+OpenMatrix 最核心的设计原则：**自己不写代码，只做决策和协调**。
+
+### 委托架构对比
+
+| Harness | OpenMatrix |
+|---------|-----------|
+| Harness Platform 不部署 | OpenMatrix 不写代码 |
+| Delegate 在目标环境执行 | Claude Code Agent 执行 |
+| Delegate 可以在任何环境 | Agent 可以处理任何语言 |
+
+### AgentRunner 的委托机制
+
+```typescript
+// OpenMatrix 不直接执行，而是准备 SubagentTask
+async prepareSubagentTask(task: Task): Promise<SubagentTask> {
+  return {
+    subagent_type: this.mapAgentType(task.assignedAgent), // 映射 Agent 类型
+    description: `${task.assignedAgent}: ${task.title}`,
+    prompt: await this.buildExecutionPrompt(task), // 构建完整提示词
+    isolation: needsIsolation ? 'worktree' : undefined, // 是否隔离执行
+    taskId: task.id,
+    timeout: task.timeout
+  };
+}
+
+// Agent 类型映射
+mapAgentType(agentType: AgentType): ClaudeCodeSubagentType {
+  const mapping: Record<AgentType, ClaudeCodeSubagentType> = {
+    planner: 'Plan',
+    coder: 'general-purpose',
+    tester: 'general-purpose',
+    reviewer: 'general-purpose',
+    researcher: 'Explore',
+    executor: 'general-purpose'
+  };
+  return mapping[agentType];
+}
+```
+
+### 为什么委托模型是正确的选择？
+
+1. **跟随模型升级**：Claude 模型升级，OpenMatrix 自动变强
+2. **不受上下文限制**：Agent 有独立的上下文窗口
+3. **不绑定特定模型**：架构可以复用到其他 AI Agent
+
+> TypeScript 代码是骨架，Prompt 模板是肌肉。
+> OpenMatrix 只构建骨架，肌肉由 Claude Code 提供。
+
+---
+
+## 二、持久化循环：对抗上下文压缩
+
+Claude Code 有一个限制：上下文窗口会被压缩。长对话中的历史信息可能丢失。
+
+### Harness 的解决方案
+
+Harness 通过持久化状态解决这个问题：
+- 所有执行状态写入数据库
+- 重启后从数据库恢复状态
+- 执行历史完整保留
+
+### OpenMatrix 的解决方案：step/complete 循环
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    step/complete 循环                        │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│   Skill 调用 openmatrix step                                 │
+│        │                                                     │
+│        ▼                                                     │
+│   ┌─────────────┐                                            │
+│   │ 读取 state  │  ← 从磁盘加载，不依赖对话记忆              │
+│   └─────────────┘                                            │
+│        │                                                     │
+│        ▼                                                     │
+│   ┌─────────────┐                                            │
+│   │ 返回任务    │  ← 返回 SubagentTask 配置                   │
+│   └─────────────┘                                            │
+│        │                                                     │
+│        ▼                                                     │
+│   Agent 执行任务                                              │
+│        │                                                     │
+│        ▼                                                     │
+│   Skill 调用 openmatrix complete                             │
+│        │                                                     │
+│        ▼                                                     │
+│   ┌─────────────┐                                            │
+│   │ 写入 state  │  ← 持久化到磁盘                             │
+│   └─────────────┘                                            │
+│        │                                                     │
+│        ▼                                                     │
+│   下一次 step，从磁盘读状态 ──────────────────┘              │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### 状态存储结构
+
+```
+.openmatrix/
+├── state.json              # 全局状态 (runId, status, currentPhase)
+├── plan.md                 # AI 生成的执行计划
+├── context.md              # Agent 共享上下文 (Agent Memory)
+├── tasks/
+│   └── TASK-001/
+│       ├── task.json       # 任务定义 + 状态 + 阶段信息
+│       ├── develop.json    # 开发阶段结果
+│       ├── verify.json     # 验证阶段结果 (质量门禁)
+│       └── accept.json     # 验收阶段结果
+├── approvals/              # 审批记录
+└── meetings/               # Meeting 记录 (阻塞问题)
+```
+
+### 与 Harness 的相似性
+
+| 特性 | Harness | OpenMatrix |
+|-----|---------|-----------|
+| 状态存储 | 数据库 | 文件系统 (.openmatrix/) |
+| 断点续传 | 支持 | 支持 (resume 命令) |
+| 执行历史 | 完整保留 | 完整保留 (每个阶段) |
+| 重启恢复 | 自动恢复 | 需调用 resume |
+
+---
+
+## 三、流程编排：多阶段流水线
+
+Harness 使用 Pipeline 来组织 Stage 和 Step。OpenMatrix 使用 Phase 来组织任务生命周期。
+
+### Harness Pipeline 结构
+
+```yaml
+pipeline:
+  stages:
+    - name: Build
+      steps: [...]
+    - name: Deploy
+      steps: [...]
+    - name: Verify
+      steps: [...]
+```
+
+### OpenMatrix Phase 结构
+
+```
+┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐
+│   TDD   │────▶│ Develop │────▶│  Verify │────▶│ Accept  │
+│ 🧪 RED  │     │ ✨ GREEN│     │ ✅ 7门禁│     │ 🎉 AI   │
+└─────────┘     └─────────┘     └─────────┘     └─────────┘
+     │              │               │               │
+     │              │               │               │
+     ▼              ▼               ▼               ▼
+  测试必须失败    测试必须通过     7道质量门禁      AI验收确认
+```
+
+### 任务生命周期（状态机）
+
+```
+pending → scheduled → in_progress → verify → accept → completed
+                │            │           │        │
+                │            ▼           ▼        ▼
+                │        blocked      failed   failed
+                │            │
+                │            ▼
+                └───────► waiting (Meeting)
+```
+
+### 七道质量门禁（Verify 阶段）
+
+| 门禁 | 检查内容 | strict | balanced | fast |
+|-----|---------|:------:|:--------:|:----:|
+| Gate 1 | 编译检查 (npm run build) | ✅ | ✅ | ❌ |
+| Gate 2 | 测试运行 (npm test) | ✅ | ✅ | ❌ |
+| Gate 3 | 覆盖率 (>80%/60%/20%) | ✅ | ✅ | ❌ |
+| Gate 4 | Lint 检查 (无 error) | ✅ 严格 | ✅ | ❌ |
+| Gate 5 | 安全扫描 (npm audit) | ✅ | ✅ | ❌ |
+| Gate 6 | E2E 测试 (Playwright) | ❓可选 | ❓可选 | ❌ |
+| Gate 7 | 验收标准 (用户定义) | ✅ | ✅ | ❌ |
+
+---
+
+## 四、Meeting 机制：阻塞不中断
+
+Harness 有一个重要特性：审批节点不会阻塞整个 Pipeline。OpenMatrix 的 Meeting 机制实现了类似效果。
+
+### Harness 的审批机制
+
+```yaml
+pipeline:
+  stages:
+    - name: Build
+    - name: Deploy
+      approval:
+        type: manual
+        # 等待审批，但不阻塞后续 Stage
+```
+
+### OpenMatrix 的 Meeting 机制
+
+```
+❌ 其他方案:
+   TASK-001 ✓ → TASK-002 阻塞 ⏸️ → 等用户... (浪费时间)
+
+✅ OpenMatrix:
+   TASK-001 ✓ → TASK-002 阻塞 → 创建Meeting → 跳过 ↷
+   TASK-003 ✓ → TASK-004 ✓ → 完成!
+   → 用户用 /om:meeting 统一处理所有阻塞
+```
+
+### Meeting 的设计理念
+
+**最大前进距离（Maximum Forward Progress）**：
+
+- 承认 AI 有不确定性
+- 不假装完美，而是用流程管理不确定性
+- 遇到阻塞 → 记录 → 跳过 → 继续其他任务
+- 用户得到「可预期的部分完成」，而不是「不可预期的全部失败」
+
+### auto 模式：完全无人值守
+
+```bash
+/om:auto 实现用户登录功能
+# 特点:
+# - ❌ 无审批点确认
+# - ❌ 无 Phase 间暂停
+# - ❌ Meeting 自动跳过 (记录但不阻塞)
+# - ✅ 默认 strict 质量级别
+# - ✅ 适合 CI/CD 集成
+```
+
+---
+
+## 五、Agent 上下文共享：Memory 机制
+
+Harness 支持在 Stage 之间共享变量。OpenMatrix 实现了 Agent Memory 机制。
+
+### Harness 的变量共享
+
+```yaml
+pipeline:
+  variables:
+    buildVersion: "1.0.0"
+  stages:
+    - name: Build
+      outputs:
+        artifactPath: /path/to/artifact
+    - name: Deploy
+      inputs:
+        artifactPath: ${build.artifactPath}
+```
+
+### OpenMatrix 的 Agent Memory
+
+```typescript
+// AgentRunner 从全局 context.md 读取前序 Agent 的决策
+private async buildAccumulatedContext(currentTask: Task): Promise<string> {
+  const contextFile = path.join(omPath, 'context.md');
+  const content = await fs.readFile(contextFile, 'utf-8');
+
+  return `
+## 前序 Agent 共享上下文 (Agent Memory)
+
+以下是之前执行的 Agent 留下的上下文信息，
+你应该基于这些信息来工作，避免重复犯错。
+
+${content}
+`;
+}
+```
+
+### Memory 的写入机制
+
+```bash
+# Skill 调用 complete 时传入摘要
+openmatrix complete --summary "实现了用户登录功能，使用 JWT 认证"
+# 摘要会自动追加到 .openmatrix/context.md
+```
+
+---
+
+## 六、三种质量配置：适应不同场景
+
+Harness 支持不同的 Pipeline 配置来适应不同场景。OpenMatrix 提供三种质量级别。
+
+### 质量配置对比
+
+| 级别 | TDD | 覆盖率 | Lint | 安全 | E2E | AI验收 | 适用场景 |
+|:----:|:---:|:------:|:----:|:----:|:---:|:------:|---------|
+| **strict** | ✅ | >80% | ✅严格 | ✅ | ❓可选 | ✅ | 🏭 生产代码 |
+| **balanced** | ❌ | >60% | ✅ | ✅ | ❓可选 | ✅ | 📦 日常开发 |
+| **fast** | ❌ | >20% | ❌ | ❌ | ❌ | ❌ | 🏃 快速原型 |
+
+### 配置实现
+
+```typescript
+export const QUALITY_PRESETS: Record<string, QualityConfig> = {
+  fast: {
+    tdd: false,
+    minCoverage: 0,
+    strictLint: false,
+    securityScan: false,
+    e2eTests: false,
+    level: 'fast'
+  },
+  balanced: {
+    tdd: false,
+    minCoverage: 60,
+    strictLint: true,
+    securityScan: true,
+    e2eTests: false,
+    level: 'balanced'
+  },
+  strict: {
+    tdd: true,
+    minCoverage: 80,
+    strictLint: true,
+    securityScan: true,
+    e2eTests: false, // 让用户选择，因为 E2E 测试耗时
+    level: 'strict'
+  }
+};
+```
+
+---
+
+## 七、架构优势总结
+
+### 与 Harness 的类比
+
+| Harness 特性 | OpenMatrix 实现 | 优势 |
+|-------------|----------------|------|
+| 委托模型 | Claude Code Agent | 跟随模型升级，无限能力扩展 |
+| 状态持久化 | .openmatrix/ 目录 | 断点续传，对抗上下文压缩 |
+| Pipeline Engine | Phase 状态机 | 多阶段验证，层层过滤 |
+| 审批不阻塞 | Meeting 机制 | 最大前进距离，效率最大化 |
+| 变量共享 | Agent Memory | Agent 间知识传递 |
+
+### OpenMatrix 的独特价值
+
+```
+可靠性 = 委托执行（跟随模型升级）
+       + 持久化循环（不受上下文限制）
+       + 最大前进距离（阻塞不中断）
+
+价值 = 自动化程度 × 质量保障 / 人工介入次数
+```
+
+### 为什么这个架构会成功？
+
+1. **趋势对**：AI 编码已进入「敢不敢用」阶段
+2. **切入点对**：不做 AI、不做 IDE，做流程编排层
+3. **架构对**：委托模型 + 持久化状态，可扩展、可恢复
+4. **哲学对**：不追求完美，追求最大前进距离
+
+---
+
+## 结语
+
+OpenMatrix 用软件工程的流程纪律，填补了「AI 能写」到「用户敢用」之间的信任鸿沟。
+
+它的架构借鉴了 Harness 的成熟思想：
+- **委托模型**让系统随 AI 进化自动变强
+- **持久化循环**让执行不受上下文限制
+- **Meeting 机制**让阻塞不影响整体效率
+
+这不是技术问题，是信任问题。OpenMatrix 用流程纪律把 AI 的不确定性，转化为用户可信任的确定性产出。
+
+---
+
+## 参考资料
+
+- [OpenMatrix GitHub](https://github.com/bigfish1913/openmatrix)
+- [OpenMatrix 官方文档](https://matrix.laofu.online/docs/)
+- [Harness Platform Architecture](https://developer.harness.io/docs/platform/architecture)

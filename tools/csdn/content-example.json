@@ -1,0 +1,14 @@
+[
+  {
+    "title": "OpenMatrix：开源的去中心化协作平台",
+    "content": "# OpenMatrix 简介\n\nOpenMatrix 是一个开源的去中心化协作平台，旨在帮助团队更高效地进行项目管理。\n\n## 核心特性\n\n- 去中心化架构\n- 实时协作\n- 自动化工作流\n- AI 辅助决策\n\n## 技术栈\n\n- Rust 后端\n- TypeScript 前端\n- 分布式存储\n\n## 如何参与\n\n欢迎加入我们的社区，一起构建更好的协作工具。",
+    "tags": ["开源", "协作工具", "去中心化"],
+    "type": "original"
+  },
+  {
+    "title": "使用 Claude Code 提升开发效率",
+    "content": "# Claude Code 开发实践\n\nClaude Code 是 Anthropic 官方的 CLI 工具，可以显著提升开发效率。\n\n## 主要功能\n\n1. 自动代码生成\n2. 代码审查与优化\n3. 智能调试\n4. 项目管理\n\n## 最佳实践\n\n- 善用 prompt 描述需求\n- 利用自动记忆功能\n- 结合 CI/CD 流程",
+    "tags": ["AI", "开发工具", "Claude"],
+    "type": "original"
+  }
+]
